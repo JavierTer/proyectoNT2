@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
-import './assets/main.css'
 import Home from './components/Home.vue'
 import Product from './components/Product.vue'
+
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.js";
 
 
 const routes = [

@@ -1,15 +1,16 @@
 <script setup>
+import AppHeader from './components/AppHeader.vue'
 </script>
 
 <template>
-  <div id="app">
-    <header>
-       <router-link to="/"> Home </router-link>
-       <router-link to="product"> Producto </router-link>
+  <div id="app" class="container">
+      <AppHeader></AppHeader>
        
+       
+       <br>
       <router-view></router-view>
 
-    </header>
+    
 
     <main>
     </main>
