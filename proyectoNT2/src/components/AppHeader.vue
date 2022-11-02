@@ -2,7 +2,8 @@
   <div>
  <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">App Ahorro</a>
+        <i class="bi bi-basket3-fill"></i>
+        <a class="navbar-brand" > Mis Cuentas </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -23,7 +24,7 @@
                <router-link class="nav-link" to="product"> Productos </router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Agregar compra</a>
+              <router-link to="agregarCompra" class="nav-link">Agregar compra </router-link>
             </li>
             <li class="nav-item">
               <a class="nav-link disabled">Disabled</a>
