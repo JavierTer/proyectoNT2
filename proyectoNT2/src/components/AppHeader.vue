@@ -26,9 +26,7 @@
             <li class="nav-item">
               <router-link to="agregarCompra" class="nav-link">Agregar compra </router-link>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
-            </li>
+            
           </ul>
         </div>
       </div>
