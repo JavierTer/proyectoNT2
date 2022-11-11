@@ -2,6 +2,7 @@
   <div>
     
     <h2>Login</h2>
+    
     <div>
     <div class="row">
       <span class="input-group-text">Usuario</span>
@@ -47,7 +48,7 @@ export default {
     */
     setup(){
         const store = useAppStore();
-        return {store}
+        return {store};
     },
     data() {
         return {
@@ -58,23 +59,27 @@ export default {
             
         }
     },
+    created() {
+        
+             console.log('created');
+        
+    },
     methods: {
-        validar() { 
-            if(this.usuario.userName === store.nameAdmin && this.usuario.pass === store.idAdminUser){
-                alert('Bienvenido store.nameAdmin')
+        validar() {
+            if(this.usuario.userName == this.store.getNameAdmin && this.usuario.pass == this.store.getIdAdmin){
+                alert('Bienvenido ' + this.store.getNameAdmin);
                 console.log('llegue aca 1 ' + this.usuario.userName);
             }
             else{
-                alert('Datos ingresados incorrectos')
-                                console.log('llegue aca 2' + this.usuario.userName);
+                alert('Datos ingresados incorrectos');
+                console.log('llegue aca 2 ' + this.usuario.userName);
 
             }
             
         }
-    },
-    /* async created(){
-        await this.store.init()
-    }*/
+        
+    }
+  
    
 };
 </script>

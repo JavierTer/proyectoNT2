@@ -6,7 +6,7 @@ export const useAppStore = defineStore('appStore', {
         return {
             loginStatus:  false,
             idAdminUser:  12345,
-            nameAdmin:    'Pepe'
+            nameAdmin:    'pepe'
         }
     },
     getters:{
