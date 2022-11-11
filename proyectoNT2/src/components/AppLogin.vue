@@ -55,17 +55,27 @@ export default {
             usuario : {
                 userName: '',
                 pass: ''
-            }
+            },
+            users : []
             
         }
     },
-    created() {
+    async created() {
         
-             console.log('created');
+         const resultado = await fetch(
+            `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users`);
+
+        const data = await resultado.json();
+        console.log('trae lo siguiente');
+        console.log(data);
+        this.users = data;
+        console.log('mis usuarios son: ');
+        console.log(this.users);
+             
         
     },
     methods: {
-        validar() {
+        /*validar() {
             if(this.usuario.userName == this.store.getNameAdmin && this.usuario.pass == this.store.getIdAdmin){
                 alert('Bienvenido ' + this.store.getNameAdmin);
                 console.log('llegue aca 1 ' + this.usuario.userName);
@@ -76,6 +86,14 @@ export default {
 
             }
             
+        }*/
+        validar(){
+          if(this.usuario.userName == this.users[0].name){
+            alert('Bienvenido ' + this.users[0].name)
+          }
+          else {
+            alert('Datos incorrectos')
+          }
         }
         
     }
