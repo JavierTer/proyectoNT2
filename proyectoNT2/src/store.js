@@ -5,8 +5,8 @@ export const useAppStore = defineStore('appStore', {
     state:()=>{
         return {
             loginStatus:  false,
-            idAdminUser:  12345,
-            nameAdmin:    'pepe'
+            idUser:  12345,
+            nameUser:    'pepe'
         }
     },
     getters:{
@@ -16,8 +16,8 @@ export const useAppStore = defineStore('appStore', {
             false  -> no esta logueado
         */
         getLoginStatus:(state) => state.loginStatus,
-        getIdAdmin:(state)=> state.idAdminUser,
-        getNameAdmin:(state)=>state.nameAdmin
+        getIdUser:(state)=> state.idAdminUser,
+        getNameUser:(state)=>state.nameAdmin
     },
     actions:{
         changeStatus:(state)=> state.loginStatus = true, 
