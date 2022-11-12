@@ -4,6 +4,9 @@ import VueRouter from 'vue-router'
 import Home from './components/Home.vue'
 import Product from './components/Product.vue'
 import AgregarCompra from './components/AgregarCompra.vue'
+import AppLogin from './components/AppLogin.vue'
+import AppLogout from './components/AppLogout.vue'
+
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
@@ -16,7 +19,10 @@ const pinia = createPinia()
 const routes = [
   {path: "/", component: Home},
   {path: "/product", component: Product},
-  {path:"/agregarCompra", component: AgregarCompra}
+  {path:"/agregarCompra", component: AgregarCompra},
+  {path: "/appLogin", component: AppLogin },
+  {path: "/appLogout", component: AppLogout }
+
 ];
 
 //cambiar component x redirect(login y registro)

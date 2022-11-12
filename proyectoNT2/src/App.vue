@@ -1,6 +1,9 @@
 <script setup>
 import AppHeader from './components/AppHeader.vue'
 import AppLogin from './components/AppLogin.vue'
+import AppLogout from './components/AppLogout.vue'
+
+
 
 </script>
 
@@ -9,14 +12,19 @@ import AppLogin from './components/AppLogin.vue'
       <AppHeader></AppHeader>
           
       <br>
+      <main>
       <router-view></router-view>
+
+      </main>
       <br>
-      <AppLogin></AppLogin>
 
-    <main>
-             
+      <aside>
+      </aside>
 
-    </main>
+      <footer>
+        Todos los derechos reservados
+      </footer>
+    
   </div>
 </template>
 

@@ -26,6 +26,9 @@
             <li class="nav-item">
               <router-link to="agregarCompra" class="nav-link">Agregar compra </router-link>
             </li>
+            <li class="nav-item">
+              <router-link :to=verificarEstado class="nav-link"> Login </router-link>
+            </li>
             
           </ul>
         </div>
@@ -36,9 +39,30 @@
 </template>
 
 <script>
-export default {
+import { useAppStore } from "../store";
+export default { 
+  setup() {
+    const store = useAppStore();
+    return { store };
+  },
+  data() {
+    return {
+    };
+  },
+   computed: {
+    //anda, pero hay que recargar la pagina para que impacte en el header.
+    verificarEstado() {
+      if(this.store.getLoginStatus){
+        return 'appLogout'
+      }
+      else {
+        return 'appLogin'
+      }
+    },
+  }
 
 }
+
 </script>
 
 <style>
