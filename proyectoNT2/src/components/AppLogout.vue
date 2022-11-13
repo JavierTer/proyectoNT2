@@ -12,7 +12,6 @@
             <router-link class="btn btn-primary" to="/"> Ir a home </router-link>
         </div>
 
-        <!--<button v-on:click="cerrarSesion" class="btn btn-dark" >Cerrar sesión</button>-->
     </div>
 </template>
 

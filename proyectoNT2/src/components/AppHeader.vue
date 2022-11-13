@@ -2,7 +2,7 @@
   <div>
  <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
-        <i class="bi bi-basket3-fill"></i>
+        <i class="bi bi-basket3-fill" style="margin-right:10px"></i>
         <a class="navbar-brand" > Mis Cuentas </a>
         <button
           class="navbar-toggler"
@@ -20,10 +20,10 @@
             <li class="nav-item">
               <router-link class="nav-link active" aria-current="page" to="/"> Home </router-link>
             </li>
-            <li class="nav-item">
-               <router-link class="nav-link" to="product"> Productos </router-link>
+            <li class="nav-item" v-if="verificarSaludo">
+               <router-link class="nav-link" to="product"> Registros </router-link>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="verificarSaludo">
               <router-link to="agregarCompra" class="nav-link">Agregar compra </router-link>
             </li>
             <li class="nav-item">

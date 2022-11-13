@@ -2,33 +2,41 @@
 import AppHeader from './components/AppHeader.vue'
 import AppLogin from './components/AppLogin.vue'
 import AppLogout from './components/AppLogout.vue'
-
+import AppFooter from './components/AppFooter.vue'
 
 
 </script>
 
-<template>
+<template id="screen">
   <div id="app" class="container">
       <AppHeader></AppHeader>
           
       <br>
-      <main>
-      <router-view></router-view>
 
-      </main>
-      <br>
+      
+      
+          <router-view></router-view>
+      
 
-      <aside>
-      </aside>
-<br>
-<br>
-<br>
-<br>
-<br>
-      <footer>
-        Todos los derechos reservados
-      </footer>
+    
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+      <AppFooter id="footer"> </AppFooter>
     
   </div>
 </template>
 
+<style >
+#app{
+  height: 100%;
+  margin-bottom: 5xp;
+}
+#footer{
+  margin-bottom: 0px;
+}
+
+</style>

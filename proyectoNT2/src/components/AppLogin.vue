@@ -122,4 +122,6 @@ export default {
   width: 400px;
   height: 700px;
 }
+
+
 </style>
