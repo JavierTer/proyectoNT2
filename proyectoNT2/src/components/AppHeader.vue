@@ -27,11 +27,24 @@
               <router-link to="agregarCompra" class="nav-link">Agregar compra </router-link>
             </li>
             <li class="nav-item">
-              <router-link :to=verificarEstado class="nav-link"> Login </router-link>
+              <router-link :to=verificarEstado class="nav-link"> {{this.loginText}} </router-link>
             </li>
             
+            
           </ul>
+        
         </div>
+        <ul v-if="verificarSaludo" class="navbar-nav" >
+          <li class="nav-item" id="nameUser"> 
+              {{ this.store.nameUser }} | 
+          </li>
+          <li li class="nav-item" id="registerUser">
+              Mis registros: {{this.store.contadorRegistros}} 
+          </li>
+          
+
+        </ul>
+          
       </div>
     </nav>
   </div>
@@ -47,18 +60,24 @@ export default {
   },
   data() {
     return {
+      loginText : "Login"
     };
   },
    computed: {
     //anda, pero hay que recargar la pagina para que impacte en el header.
     verificarEstado() {
       if(this.store.getLoginStatus){
+        this.loginText = "Logout"
         return 'appLogout'
       }
       else {
+        this.loginText = "Login"
         return 'appLogin'
       }
     },
+    verificarSaludo(){
+      return this.store.loginStatus
+    }
   }
 
 }
@@ -66,5 +85,16 @@ export default {
 </script>
 
 <style>
+#nameUser {
+  margin-right: 0xp;
+  font-size: 1.2em;
+  color: orangered;
+  padding-right: 10px;
+}
 
+#registerUser {
+  margin-right: 0xp;
+  font-size: 1.2em;
+
+}
 </style>

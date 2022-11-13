@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1 v-if="estado">Hola {{ this.store.nameUser }}</h1>
-    <h2>Login</h2>
+    <h1 v-if="estado" id="title">Bienvenido {{ this.store.nameUser }} !!! </h1>
 
-    <div>
+    <div id="bloqueLogin">
+    <h2>Login</h2>
       <div class="row">
         <span class="input-group-text">Usuario</span>
         <div style="margin: 10px" id="marco" class="form-floating">
@@ -34,11 +34,13 @@
     </div>
   </div>
 </template>
+
 <script>
+
 import { useAppStore } from "../store";
+
 export default {
-  /* Aca se deja disponible el state
-   */
+  
   setup() {
     const store = useAppStore();
     return { store };
@@ -80,13 +82,16 @@ export default {
       } else {
         const usuarioBuscado = this.buscarUsuario(this.usuario);
         if (usuarioBuscado != null) {
-          alert(`Hola: ${usuarioBuscado.name}`);
 
           //no cambia todavia el status
-          this.store.changeStatus;
+          //this.store.changeStatus;
           this.store.idUser = usuarioBuscado.id;
-          this.store.loginStatus = true;
           this.store.nameUser = usuarioBuscado.name;
+          this.store.loginStatus = true;
+
+          console.log('el status es: ');
+          console.log(this.store.loginStatus);
+
         } else {
           alert("El usuario no existe");
         }
@@ -108,4 +113,13 @@ export default {
 </script>
 
 <style>
+#title {
+  padding-bottom: 20px;
+}
+
+#bloqueLogin {
+  margin: auto;
+  width: 400px;
+  height: 700px;
+}
 </style>

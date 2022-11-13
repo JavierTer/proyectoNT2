@@ -1,8 +1,18 @@
 <template>
     <div>
-        <h1>Quieres cerrar sesión?</h1>
-        <br>
-        <button >Cerrar sesión</button>
+        <div v-if="estado">
+          <h1>Quieres cerrar sesión?</h1>
+          <br>
+          <button v-on:click="cerrarSesion"  class="btn btn-dark"> Cerrar sesión</button>
+
+        </div>
+
+        <div v-if="!estado">
+            <h2>Gracias por usar Mis Cuentas !!! </h2>
+            <router-link class="btn btn-primary" to="/"> Ir a home </router-link>
+        </div>
+
+        <!--<button v-on:click="cerrarSesion" class="btn btn-dark" >Cerrar sesión</button>-->
     </div>
 </template>
 
@@ -21,22 +31,23 @@ export default {
     };
   },
   methods: {
-    /*validar() {
-            if(this.usuario.userName == this.store.getNameAdmin && this.usuario.pass == this.store.getIdAdmin){
-                alert('Bienvenido ' + this.store.getNameAdmin);
-                console.log('llegue aca 1 ' + this.usuario.userName);
-            }
-            else{
-                alert('Datos ingresados incorrectos');
-                console.log('llegue aca 2 ' + this.usuario.userName);
+    cerrarSesion(){
+      //ver bien como cambiar el loginStatus
 
-            }
-            
-        }*/
-    
+    this.store.loginStatus = false;          
+    console.log('el status es: ');
+    console.log(this.store.loginStatus);
+
+    }
    
 
+  },
+  computed: {
+    estado() {
+      return this.store.loginStatus;
+    },
   }
+  
 }
 </script>
 

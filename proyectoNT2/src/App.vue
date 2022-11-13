@@ -20,7 +20,11 @@ import AppLogout from './components/AppLogout.vue'
 
       <aside>
       </aside>
-
+<br>
+<br>
+<br>
+<br>
+<br>
       <footer>
         Todos los derechos reservados
       </footer>
