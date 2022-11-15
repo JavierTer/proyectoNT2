@@ -1,9 +1,9 @@
 <template>
-  <div>
- <nav class="navbar navbar-expand-lg bg-light">
+  <div >
+ <nav class="navbar navbar-expand-lg bg-light" >
       <div class="container-fluid">
         <i class="bi bi-basket3-fill" style="margin-right:10px"></i>
-        <a class="navbar-brand" > Mis Cuentas </a>
+        <router-link class="nav-link active" aria-current="page" to="/" id="misCuentas"> Mis Cuentas </router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -17,30 +17,31 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item">
+           <!-- <li class="nav-item">
               <router-link class="nav-link active" aria-current="page" to="/"> Home </router-link>
+            </li>-->
+            <li class="nav-item" v-if="verificarSaludo" style="margin-left:10px">
+               <router-link class="nav-link" to="product"> Mis compras  </router-link>
             </li>
             <li class="nav-item" v-if="verificarSaludo">
-               <router-link class="nav-link" to="product"> Registros </router-link>
+              <router-link to="agregarCompra" class="nav-link" >Agregar compra  </router-link>
             </li>
-            <li class="nav-item" v-if="verificarSaludo">
-              <router-link to="agregarCompra" class="nav-link">Agregar compra </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link :to=verificarEstado class="nav-link"> {{this.loginText}} </router-link>
-            </li>
+           
             
             
           </ul>
         
         </div>
-        <ul v-if="verificarSaludo" class="navbar-nav" >
-          <li class="nav-item" id="nameUser"> 
-              {{ this.store.nameUser }} | 
+        <ul  class="navbar-nav" >
+           <li class="nav-item" id="login">
+              <router-link :to=verificarEstado class="nav-link"> {{this.loginText}} </router-link>
+            </li>
+          <li v-if="verificarSaludo" class="nav-item" id="nameUser"> 
+              {{ this.store.nameUser }}  
           </li>
-          <li li class="nav-item" id="registerUser">
+         <!-- <li v-if="verificarSaludo" class="nav-item" id="registerUser">
               Mis registros: {{this.store.contadorRegistros}} 
-          </li>
+          <li/>-->
           
 
         </ul>
@@ -85,11 +86,20 @@ export default {
 </script>
 
 <style>
+
+#login {
+  padding-right: 20px;
+}
+
+#misCuentas{
+  font-size: 1.4em;
+}
 #nameUser {
   margin-right: 0xp;
   font-size: 1.2em;
   color: orangered;
   padding-right: 10px;
+  margin: auto;
 }
 
 #registerUser {
@@ -97,4 +107,6 @@ export default {
   font-size: 1.2em;
 
 }
+
+
 </style>

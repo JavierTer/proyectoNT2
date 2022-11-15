@@ -3,9 +3,12 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import Home from './components/Home.vue'
 import Product from './components/Product.vue'
-import AgregarCompra from './components/AgregarCompra.vue'
+import Articulo from './components/Articulo.vue'
 import AppLogin from './components/AppLogin.vue'
 import AppLogout from './components/AppLogout.vue'
+import AppRegister from './components/AppRegister.vue'
+import AgregarCompra from './components/AgregarCompra.vue'
+
 
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -18,10 +21,20 @@ const pinia = createPinia()
 
 const routes = [
   {path: "/", component: Home},
-  {path: "/product", component: Product},
-  {path:"/agregarCompra", component: AgregarCompra},
+  //children maneja los ruteos dentro del Producto (compra)
+  //cnd tenemos hijos, podemos tener 1 ruta que no tiene el path declarado y esa va a ser la primera que se va a inyectar.
+  {path: "/product", component: Product, 
+  children:
+  [
+    {path: ":id", component: Articulo}
+  ]},
+  {path:"/articulo", component: Articulo},
   {path: "/appLogin", component: AppLogin },
-  {path: "/appLogout", component: AppLogout }
+  {path: "/appLogout", component: AppLogout },
+  {path: "/appRegister", component: AppRegister},
+  {path: "/agregarCompra", component: AgregarCompra}
+
+
 
 ];
 

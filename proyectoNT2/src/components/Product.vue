@@ -1,3 +1,76 @@
 <template>
-    <div>Product</div>
+  <div>
+    <br />
+    {{calcularTotalPorCompra()}}
+    
+    <h1>Hola {{ this.store.nameUser }}, estas son tus compras</h1>
+    
+    <div class="list-group" v-if="mostrarCompras">
+          
+      <a  
+      v-for=" compra in compras" 
+      :key="compra.id"
+      @click="goTo(compra.id)"
+      style="cursor: pointer"
+      class="list-group-item list-group-item-acion"
+     >{{compra.mes}} </a>
+       
+     <router-view :key="$route.path"></router-view>
+    </div>
+  </div>
 </template>
+
+<script>
+import { useAppStore } from "../store";
+export default {
+  setup() {
+    const store = useAppStore();
+    return { store };
+  },
+  data() {
+    return {
+      compras: [],
+    };
+  },
+  async created() {
+    if (this.store.loginStatus) {
+      const resultado = await fetch(
+        `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras`
+      );
+      const data = await resultado.json();
+
+      //this.compras = this.buscarComprasDelUsuario(this.store.idUser)
+
+      this.compras = data;
+      this.guardarIdCompras()
+    }
+  },
+  methods: {
+    
+   
+    goTo(id){
+      //objeto router -> tiene 1 pila de ruteo
+      this.$router.push(`/product/${id}`);
+    },
+    
+    
+    calcularTotalPorCompra(){
+  
+    },
+    guardarIdCompras(){
+      for (let i = 0; i < this.compras.length; i++) {
+        const element = this.compras[i];
+        this.store.idCompras.push(this.compras[i].id)
+        
+      }
+          //console.log(this.store.idCompras)
+
+    }
+  },
+  computed: {
+    mostrarCompras() {
+      return this.compras.length > 0;
+    }
+  }
+};
+</script>

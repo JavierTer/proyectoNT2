@@ -7,7 +7,7 @@ export const useAppStore = defineStore('appStore', {
             loginStatus:        false,
             idUser:             0,
             nameUser:           '',
-            contadorRegistros:  0
+            idCompras:  []
         }
     },
     getters:{

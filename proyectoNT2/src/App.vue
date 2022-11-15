@@ -3,6 +3,10 @@ import AppHeader from './components/AppHeader.vue'
 import AppLogin from './components/AppLogin.vue'
 import AppLogout from './components/AppLogout.vue'
 import AppFooter from './components/AppFooter.vue'
+import AppRegister from './components/AppRegister.vue'
+import agregarCompra from './components/AgregarCompra.vue'
+
+
 
 
 </script>
@@ -15,7 +19,7 @@ import AppFooter from './components/AppFooter.vue'
 
       
       
-          <router-view></router-view>
+          <router-view ></router-view>
       
 
     
@@ -38,5 +42,6 @@ import AppFooter from './components/AppFooter.vue'
 #footer{
   margin-bottom: 0px;
 }
+
 
 </style>
