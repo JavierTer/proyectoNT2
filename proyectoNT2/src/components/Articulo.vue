@@ -4,7 +4,7 @@
       <ul>
         <li 
          v-for=" articulo in articulos" 
-         :key="articulo.id"
+         :key="articulo.nombre"
           class="list-group-item list-group-item-acion"
         >
         <br>
@@ -51,24 +51,27 @@ export default {
     
   },
     created() {
-    if (this.store.loginStatus) {
+    //if (this.store.loginStatus) {
       this.buscarCompra()
-    }
+    //}
      
   },
   methods: {
     async buscarCompra(){
        const resultado = await fetch(
-        `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras/${this.id}/articulos`
+        `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras/${this.id}`
       );
       const data = await resultado.json();
-      this.articulos = data;
+      this.articulos = data.articulos;
+      //this.articulos = this.articulos[1].articulos
+      
+      console.log(this.articulos);
     },
     buscarComprasDelUsuario(id) {
       return this.compras.filter((elemento) => (elemento.userId = id));
     },
     mostrarCompras() {
-      return this.compras.length > 0;
+      return this.store.compras.length > 0;
     },
     /*calcularTotal(){
       const total = 0
@@ -80,6 +83,20 @@ export default {
       return total
     }*/
   },
-  computed: {},
+  computed: {
+    
+    
+    
+    /*,
+  computed: {
+    cambioId(){
+      for (let index = 0; index < this.store.idCompras.length; index++) {
+        const element = this.store.idCompras[index];
+        return element.find((elemento) => elemento.id == element.id)
+        
+      }
+    }
+  },*/
+}
 };
 </script>

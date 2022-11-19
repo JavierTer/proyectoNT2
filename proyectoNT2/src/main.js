@@ -23,7 +23,7 @@ const routes = [
   {path: "/", component: Home},
   //children maneja los ruteos dentro del Producto (compra)
   //cnd tenemos hijos, podemos tener 1 ruta que no tiene el path declarado y esa va a ser la primera que se va a inyectar.
-  {path: "/product", component: Product, 
+  {path: "/product/", component: Product, 
   children:
   [
     {path: ":id", component: Articulo}

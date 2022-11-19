@@ -1,8 +1,7 @@
 <template>
     <div>
-        {{compra.mes}} {{compra.articulos.nombre}} {{compra.articulos.precio}} {{compra.articulos.cantidad}} {{compra.userId}}
     <div id="agregarCompra">
-    
+   
     <h2>Registra una compra</h2>
       <div class="row">
         <span class="input-group-text">Mes</span>
@@ -24,7 +23,7 @@
             class="form-control"
             id="floatingInputGroup1"
             placeholder=""
-            v-model="compra.articulos.nombre"
+            v-model="nombreArticulo"
           />
           <label for="floatingInputGroup1"></label>
         </div>
@@ -36,7 +35,7 @@
             class="form-control"
             id="floatingInputGroup1"
             placeholder=""
-            v-model="compra.articulos.precio"
+            v-model="precioArticulo"
           />
           <label for="floatingInputGroup1"></label>
         </div>
@@ -48,12 +47,13 @@
             class="form-control"
             id="floatingInputGroup1"
             placeholder=""
-            v-model="compra.articulos.cantidad"
+            v-model="cantidadArticulo"
           />
           <label for="floatingInputGroup1"></label>
         </div>
-        <button class="btn btn-primary" v-on:click="guardarCompra"> Guardar </button>
+        <button class="btn btn-primary" v-on:click.prevent="guardarCompra"> Guardar </button>
                
+        {{compra.mes}} {{compra.articulos.nombre}} {{compra.articulos.precio}} {{compra.articulos.cantidad}} {{compra.userId}}
 
       </div>
       
@@ -74,13 +74,14 @@ export default {
   data() {
     return {
       compra: {
-        mes: "enero",
-        compraId: 12345,
-        userId: this.store.idUser,
-        articulos : [{nombre: 'Gaseosa', precio: 10, cantidad: 1, id: this.compraId+1, compraId: this.compraId }]
+        mes: "",
+        articulos : []
       },
-      path: `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras`
-      
+      nombreArticulo: '',
+      precioArticulo: 0,
+      cantidadArticulo: 0,
+      pathCompra: `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras`,
+     // pathArticulo: `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras/1/articulos`
       
     };
   },
@@ -107,11 +108,64 @@ export default {
     validar(){
         return true
     },
-    guardarCompra(){
-        
-        axios.post(this.path, this.compra).then(data => {console.log(data);})
+    async guardarCompra(){
+      this.compra.articulos.push(
+        {
+        id: 1,
+        nombre: this.nombreArticulo, 
+        precio: this.precioArticulo, 
+        cantidad: this.cantidadArticulo}),
+       await axios.post(this.pathCompra,    this.compra).then(data => {console.log(data);})
+
+    //   await axios.post(this.pathArticulo,  this.compra.articulos).then(data => {console.log(data);})
+
+
+
+    },
+    async buscarProximoId(){
+       const resultado = await fetch(
+      `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras`
+    );
+
+    const data = await resultado.json();
+
+    const ultimoIdDeCompra = data[data.length].id 
+    console.log(ultimoIdDeCompra);
+    return ultimoIdDeCompra + 1
     }
-   
+/*
+        {
+          var data = {
+            
+            compra: {
+                mes: this.mes,
+                compraId: 55555555555,
+                userId: this.store.idUser,
+                articulos: [{idArticulo: 1112112121, 
+                compraId: this.compraId,
+                nombreArticulo: this.nombreArticulo,
+                precioArticulo: this.precioArticulo,
+                cantidadArticulo: this.cantidadArticulo}]
+
+            }
+                         
+
+          }
+          this.compra.articulos.push(this.articulos);
+          this.compra =  {
+                      mes: "",
+                      compraId: 0,
+                      userId: 0,
+                      nombreArticulo: '',
+                      precioArticulo: 0,
+                      cantidadArticulo: 0,
+                      articulos : []
+
+          }
+      };
+        console.log(this.compra.articulos);
+    }
+   */
   },
   computed: {
     estado() {

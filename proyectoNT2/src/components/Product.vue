@@ -1,9 +1,9 @@
 <template>
   <div>
     <br />
-    {{calcularTotalPorCompra()}}
     
     <h1>Hola {{ this.store.nameUser }}, estas son tus compras</h1>
+    <h4>Tenes {{this.compras.length}} compras registradas</h4>
     
     <div class="list-group" v-if="mostrarCompras">
           
@@ -13,9 +13,11 @@
       @click="goTo(compra.id)"
       style="cursor: pointer"
       class="list-group-item list-group-item-acion"
-     >{{compra.mes}} </a>
+     >{{compra.mes}} 
+      {{compra.id}}</a>
        
-     <router-view :key="$route.path"></router-view>
+          <router-view :key="$route.path"> </router-view>
+
     </div>
   </div>
 </template>
@@ -38,11 +40,11 @@ export default {
         `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras`
       );
       const data = await resultado.json();
-
+      
       //this.compras = this.buscarComprasDelUsuario(this.store.idUser)
 
       this.compras = data;
-      this.guardarIdCompras()
+     // this.guardarIdCompras()
     }
   },
   methods: {
@@ -50,8 +52,11 @@ export default {
    
     goTo(id){
       //objeto router -> tiene 1 pila de ruteo
-      this.$router.push(`/product/${id}`);
+      this.$router.push(`/product/${id}`)
+
+      console.log(`${id}`);
     },
+   
     
     
     calcularTotalPorCompra(){
