@@ -7,7 +7,8 @@ export const useAppStore = defineStore('appStore', {
             loginStatus:        false,
             idUser:             0,
             nameUser:           '',
-            idCompras:  []
+            idCompras:          [],
+            meses:              ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
         }
     },
     getters:{
@@ -19,7 +20,8 @@ export const useAppStore = defineStore('appStore', {
         getLoginStatus:(state)       =>  state.loginStatus,
         getIdUser:(state)            =>  state.idAdminUser,
         getNameUser:(state)          =>  state.nameAdmin,
-        getContadorRegistros:(state) =>  state.contadorRegistros
+        getContadorRegistros:(state) =>  state.contadorRegistros,
+        getMeses: (state)            =>  state.meses
 
     },
     actions:{
@@ -34,7 +36,10 @@ export const useAppStore = defineStore('appStore', {
             console.log('Ahora el status es: ' + state.loginStatus);
         },
         
-        incrementarContador:(state)  =>  state.contadorRegistros++
+        incrementarContador:(state)  =>  state.contadorRegistros++,
+
+       
+
 
 
         

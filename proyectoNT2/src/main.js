@@ -8,6 +8,9 @@ import AppLogin from './components/AppLogin.vue'
 import AppLogout from './components/AppLogout.vue'
 import AppRegister from './components/AppRegister.vue'
 import AgregarCompra from './components/AgregarCompra.vue'
+import AppInforme from './components/AppInforme.vue'
+
+
 
 
 
@@ -32,7 +35,9 @@ const routes = [
   {path: "/appLogin", component: AppLogin },
   {path: "/appLogout", component: AppLogout },
   {path: "/appRegister", component: AppRegister},
-  {path: "/agregarCompra", component: AgregarCompra}
+  {path: "/agregarCompra", component: AgregarCompra},
+  {path: "/appInforme", component: AppInforme}
+
 
 
 

@@ -19,13 +19,45 @@
 </template>
 
 <script>
+import { useAppStore } from "../store";
+
 export default {
+  setup() {
+    const store = useAppStore();
+    return { store };
+  },
   data() {
     return {
-
-    }
+      fecha: this.registrarFecha()
+  }
   },
   methods: {
+    registrarFecha() {
+      //creamos 1 nueva fecha obteniendo la fecha del sistema
+      //este lo puedo guardar en una variable
+      const fecha = new Date()
+      console.log(fecha);
+
+      //extraer las horas de la fecha
+      const horas = fecha.getHours();
+      //console.log(horas);
+
+      //nos traemos el dia de la semana (0 es domingo, 1 es el lunes)
+      const dia = fecha.getDay();
+      console.log('el dia de la semana es: ' + dia);
+
+      //nos traemos el dia del mes
+      const diaDelMes = fecha.getDate();
+      console.log('el dia del mes es: ' + diaDelMes);
+
+      //el mes comienza desde el 0
+      const mes = fecha.getMonth();
+      console.log('nos traemos el mes: ' + mes);
+
+      const anio = fecha.getFullYear();
+      console.log('Nos traemos el año: ' + anio);
+
+    }
     
   }
 };

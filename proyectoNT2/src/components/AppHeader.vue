@@ -26,6 +26,9 @@
             <li class="nav-item" v-if="verificarSaludo">
               <router-link to="agregarCompra" class="nav-link" >Agregar compra  </router-link>
             </li>
+             <li class="nav-item" v-if="verificarSaludo">
+              <router-link to="appInforme" class="nav-link" >Informe  </router-link>
+            </li>
            
             
             

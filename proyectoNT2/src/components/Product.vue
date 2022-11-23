@@ -44,6 +44,7 @@ export default {
       //this.compras = this.buscarComprasDelUsuario(this.store.idUser)
 
       this.compras = data;
+      //extraerFecha()
      // this.guardarIdCompras()
     }
   },
@@ -56,7 +57,10 @@ export default {
 
       console.log(`${id}`);
     },
-   
+
+    extraerFecha(){
+      
+    },
     
     
     calcularTotalPorCompra(){
