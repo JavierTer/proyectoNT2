@@ -16,63 +16,59 @@
         </div>
 
         <span class="input-group-text">Nombre del articulo</span>
-    <div style="margin: 10px" class="form-floating">
-      <input
-        type="text"
-        class="form-control"
-        id="floatingInputGroup1"
-        placeholder=""
-        v-model="nombreArticulo"
-      />
+        <div style="margin: 10px" class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInputGroup1"
+            placeholder=""
+            v-model="nombreArticulo"
+          />
 
-      <label for="floatingInputGroup1"></label>
-    </div>
+          <label for="floatingInputGroup1"></label>
+        </div>
 
-    <span class="input-group-text">Precio del articulo</span>
-    <div style="margin: 10px" class="form-floating">
-      <input
-        type="number"
-        class="form-control"
-        id="floatingInputGroup1"
-        placeholder="00.0"
-        v-model="precioArticulo"
-      />
-      <label for="floatingInputGroup1"></label>
-    </div>
+        <span class="input-group-text">Precio del articulo</span>
+        <div style="margin: 10px" class="form-floating">
+          <input
+            type="number"
+            class="form-control"
+            id="floatingInputGroup1"
+            placeholder="00.0"
+            v-model="precioArticulo"
+          />
+          <label for="floatingInputGroup1"></label>
+        </div>
 
-    <span class="input-group-text">Cantidad</span>
-    <div style="margin: 10px" class="form-floating">
-      <input
-        type="number"
-        class="form-control"
-        id="floatingInputGroup1"
-        placeholder=""
-        v-model="cantidadArticulo"
-      />
-      <label for="floatingInputGroup1"></label>
-    </div>
-        
-        <button 
-          type="button" 
-        class="btn btn-primary"
-        @click="crearCompra"
-        >Crear compra</button>
-        <br>
-        <br>
+        <span class="input-group-text">Cantidad</span>
+        <div style="margin: 10px" class="form-floating">
+          <input
+            type="number"
+            class="form-control"
+            id="floatingInputGroup1"
+            placeholder=""
+            v-model="cantidadArticulo"
+          />
+          <label for="floatingInputGroup1"></label>
+        </div>
 
-        <button
-         
-        type="button" 
-        class="btn btn-primary"
-        @click="agregarArticulos" >
-         Agregar articulo </button>
+        <button type="button" class="btn btn-primary" @click="crearCompra">
+          Crear compra
+        </button>
+        <br />
+        <br />
 
-      {{compra.articulos}}
+        <button type="button" class="btn btn-primary" @click="agregarArticulos">
+          Agregar articulo
+        </button>
 
-      <!--<router-view :key="$route.path"> </router-view>-->
+        {{ compra.articulos }}
+        <br />
+        {{ compra.total }}
 
-       
-       <!-- <button class="btn btn-primary" v-on:click.prevent="guardarCompra">
+        <!--<router-view :key="$route.path"> </router-view>-->
+
+        <!-- <button class="btn btn-primary" v-on:click.prevent="guardarCompra">
           Guardar
         </button> -->
       </div>
@@ -92,8 +88,9 @@ export default {
       compra: {
         mes: new Date(),
         articulos: [],
+        total: 0,
       },
-      idDeLaCompra: 0,
+      //idDeLaCompra: 0,
       nombreArticulo: "",
       precioArticulo: 0,
       cantidadArticulo: 0,
@@ -126,54 +123,65 @@ export default {
 
       //   await axios.post(this.pathArticulo,  this.compra.articulos).then(data => {console.log(data);})
     }*/
-    async crearCompra(){
-      await axios.post(this.pathCompra, this.compra).then((data) => {
+    async crearCompra() {
+      if (this.compra.articulos.length < 1) {
+        alert("Debe agregar al menos 1 articulo");
+      } else {
+        this.compra.total = this.calcularTotal(this.compra.articulos);
+        console.log(this.compra.total);
+        await axios.post(this.pathCompra, this.compra).then((data) => {
           this.idDeLaCompra = data.data.id;
-          
+
           //objeto router -> tiene 1 pila de ruteo
           //this.$router.push(`/agregarCompra/${id}`)
-          console.log('Se creo la compra'); 
+          console.log("Se creo la compra");
           console.log(data.data);
-          console.log('este es mi idDeLaCompra');
+          console.log("este es mi idDeLaCompra");
           console.log(this.idDeLaCompra);
-      });
+        });
+      }
     },
-    async goTo(id){
-      
-      if (this.idDeLaCompra == 0) {
-        alert('Primero debe crear la compra')
+    calcularTotal(articulos) {
+      let total = 0
+      for (let i = 0; i < articulos.length; i++) {
+        console.log(articulos[i].subTotal);
+        total = total + articulos[i].subTotal;
         
-
       }
-      else {
+      return total;
+    },
+    async goTo(id) {
+      if (this.idDeLaCompra == 0) {
+        alert("Primero debe crear la compra");
+      } else {
         //console.log(this.compra.id);
-          this.$router.push(`/agregarCompra/${id}`)
+        this.$router.push(`/agregarCompra/${id}`);
 
-          console.log(`este es el id que pasa  ${id}`);
-
+        console.log(`este es el id que pasa  ${id}`);
       }
-     
-
-      
 
       console.log(`${id}`);
     },
-    agregarArticulos(){
+    agregarArticulos() {
       let articulos = {
         nombre: this.nombreArticulo,
         precio: this.precioArticulo,
         cantidad: this.cantidadArticulo,
+        subTotal: this.calcularSubTotal(
+          this.precioArticulo,
+          this.cantidadArticulo
+        ),
       };
-       
-       this.compra.articulos.push(articulos);
 
-        this.nombreArticulo =    "",
-        this.precioArticulo =    0,
-        this.cantidadArticulo =  0
-    }
-     
-    
-    
+      this.compra.articulos.push(articulos);
+
+      (this.nombreArticulo = ""),
+        (this.precioArticulo = 0),
+        (this.cantidadArticulo = 0);
+    },
+    calcularSubTotal(precio, cantidad) {
+      return precio * cantidad;
+    },
   },
   computed: {
     estado() {

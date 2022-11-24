@@ -15,7 +15,8 @@
         <h4>Cantidad</h4>
         | {{articulo.cantidad}} |
         <br>
-        
+        <h6>SubTotal</h6>
+        | {{articulo.subTotal}} |
 
         
 

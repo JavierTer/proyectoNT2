@@ -11,13 +11,16 @@
       <br>
 
       <a  
-      v-for=" compra in compras" 
-      :key="compra.id"
-      @click="goTo(compra.id)"
-      style="cursor: pointer"
-      class="list-group-item list-group-item-acion"
-     >{{compra.mes}} 
-      {{compra.id}}</a>
+          v-for=" compra in compras" 
+          :key="compra.id"
+          @click="goTo(compra.id)"
+          style="cursor: pointer"
+          class="list-group-item list-group-item-acion"
+        > Fecha de la compra: {{compra.mes}} 
+          - |     
+          - Monto:  ${{compra.total}}
+     </a>
+      
        
           <router-view :key="$route.path"> </router-view>
 
@@ -63,7 +66,7 @@ export default {
     //const comprasPorFecha =  [...this.compras].sort((a, b) => new Date(a.mes).getTime() - new Date(b.mes).getTime());
     //return comprasPorFecha
     //console.log(typeof(this.compras[5].mes));
-    return this.compras.sort((a,b) => a.mes.localeCompare(b.mes))
+    return this.compras.sort((a,b) => b.mes.localeCompare(a.mes))
     },
     goTo(id){
       //objeto router -> tiene 1 pila de ruteo
