@@ -6,7 +6,10 @@
     <h4>Tenes {{this.compras.length}} compras registradas</h4>
     
     <div class="list-group" v-if="mostrarCompras">
-          
+      
+      <button class="btn btn-primary" @click="ordenarCompras" >Ordenar por fecha</button>
+      <br>
+
       <a  
       v-for=" compra in compras" 
       :key="compra.id"
@@ -32,6 +35,7 @@ export default {
   data() {
     return {
       compras: [],
+      orderBy: 1, // 1 fecha, 2 costo
     };
   },
   async created() {
@@ -49,8 +53,18 @@ export default {
     }
   },
   methods: {
-    
-   
+     orderByDate() {
+      this.orderBy = 1;
+    },
+    orderByCost() {
+      this.orderBy = 2;
+    },
+   ordenarCompras() {
+    //const comprasPorFecha =  [...this.compras].sort((a, b) => new Date(a.mes).getTime() - new Date(b.mes).getTime());
+    //return comprasPorFecha
+    //console.log(typeof(this.compras[5].mes));
+    return this.compras.sort((a,b) => a.mes.localeCompare(b.mes))
+    },
     goTo(id){
       //objeto router -> tiene 1 pila de ruteo
       this.$router.push(`/product/${id}`)
@@ -80,6 +94,7 @@ export default {
     mostrarCompras() {
       return this.compras.length > 0;
     }
+    
   }
 };
 </script>
