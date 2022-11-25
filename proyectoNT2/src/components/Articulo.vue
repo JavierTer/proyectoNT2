@@ -10,7 +10,7 @@
         <br>
         <h2>Nombre del articulo</h2>
         | {{articulo.nombre}}  |
-        <h3>Precio</h3>
+        <h3>Precio por unidad</h3>
         | ${{articulo.precio}}  | 
         <h4>Cantidad</h4>
         | {{articulo.cantidad}} |

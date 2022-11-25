@@ -8,7 +8,8 @@ export const useAppStore = defineStore('appStore', {
             idUser:             0,
             nameUser:           '',
             idCompras:          [],
-            meses:              ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+            meses:              ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            limiteDeCompras:    5000,
         }
     },
     getters:{

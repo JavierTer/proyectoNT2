@@ -8,7 +8,6 @@ import AppLogin from './components/AppLogin.vue'
 import AppLogout from './components/AppLogout.vue'
 import AppRegister from './components/AppRegister.vue'
 import AgregarCompra from './components/AgregarCompra.vue'
-import AppInforme from './components/AppInforme.vue'
 
 
 
@@ -24,6 +23,7 @@ const pinia = createPinia()
 
 const routes = [
   {path: "/", component: Home},
+  
   //children maneja los ruteos dentro del Producto (compra)
   //cnd tenemos hijos, podemos tener 1 ruta que no tiene el path declarado y esa va a ser la primera que se va a inyectar.
   {path: "/product/", component: Product, 
@@ -36,7 +36,6 @@ const routes = [
   {path: "/appLogout", component: AppLogout },
   {path: "/appRegister", component: AppRegister},
   {path: "/agregarCompra", component: AgregarCompra},
-  {path: "/appInforme", component: AppInforme}
 
 
 
