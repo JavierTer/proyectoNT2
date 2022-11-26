@@ -29,318 +29,569 @@
       <!-- <div class="container-fluid bg-secondary d-flex justify-content-center">
         <p class="text-light mb-0 p-2 fs-2">holiss</p> -->
       <div class="container text-center">
-        <div class="row p-2 mb-2 bg-primary">
-          <h3>{{ this.store.meses[0] }}</h3>
+        <div
+          class="row p-5 mb-3"
+          v-if="this.comprasPorMes[0].cantComprasMes > 0"
+        >
+          <h2>{{ this.store.meses[0] }}</h2>
           <div class="col" id="titulo">
-            Compras
+            {{ this.comprasPorMes[0].cantComprasMes }} Compras
             <!--{{this.comprasPorMes[0]}} -->
             <ul>
               <li
                 id="item"
-                v-for="compras in this.comprasPorMes[0]"
+                v-for="compras in this.comprasPorMes[0].compras"
                 :key="compras.id"
               >
-                {{ compras.mes }}
-                {{ compras.total }}
+                {{ compras.mes }} | ${{ compras.total }}
               </li>
             </ul>
           </div>
-          <div class="col" id="titulo">Articulos</div>
+          <div class="col" id="titulo">
+            Articulos {{ this.comprasPorMes[0].articulos.length }}
+            <ul>
+              <li
+                id="item"
+                v-for="articulos in this.comprasPorMes[0].articulos"
+                :key="articulos.nombre"
+              >
+                {{ articulos.nombre }} | {{ articulos.cantidad }} | ${{
+                  articulos.monto
+                }}
+              </li>
+            </ul>
+          </div>
           <div class="row p-2 mb-2 bg-secundary">
-            <p>Total gastado:</p>
+            <p>
+              Total gastado en el mes: ${{ this.comprasPorMes[0].totalPorMes }}
+            </p>
             <p>Objetivo logrado:</p>
           </div>
+        </div>
+        <div v-else class="p-5 mb-3">
+          <h5>No hay compras registradas en {{ this.store.meses[0] }}</h5>
         </div>
       </div>
 
       <div class="container text-center">
-        <div class="row p-2 mb-2 bg-primary">
+        <div
+          class="row p-5 mb-3"
+          v-if="this.comprasPorMes[1].cantComprasMes > 0"
+        >
           <h3>{{ this.store.meses[1] }}</h3>
 
           <div class="col" id="titulo">
-            Compras
+            {{ this.comprasPorMes[1].cantComprasMes }} Compras
             <!--{{this.comprasPorMes[0]}} -->
             <ul>
               <li
                 id="item"
-                v-for="compras in this.comprasPorMes[1]"
+                v-for="compras in this.comprasPorMes[1].compras"
                 :key="compras.id"
               >
                 {{ compras.mes }}
-                {{ compras.total }}
+                ${{ compras.total }}
               </li>
             </ul>
           </div>
-          <div class="col" id="titulo">Articulos</div>
+          <div class="col" id="titulo">
+            Articulos {{ this.comprasPorMes[1].articulos.length }}
+            <ul>
+              <li
+                id="item"
+                v-for="articulos in this.comprasPorMes[1].articulos"
+                :key="articulos.nombre"
+              >
+                {{ articulos.nombre }} | {{ articulos.cantidad }} | ${{
+                  articulos.monto
+                }}
+              </li>
+            </ul>
+          </div>
           <div class="row p-2 mb-2 bg-secundary">
-            <p>Total gastado:</p>
+            <p>
+              Total gastado en el mes: ${{ this.comprasPorMes[1].totalPorMes }}
+            </p>
             <p>Objetivo logrado:</p>
           </div>
+        </div>
+        <div v-else class="p-5 mb-3">
+          <h5>No hay compras registradas en {{ this.store.meses[1] }}</h5>
         </div>
       </div>
 
       <div class="container text-center">
-        <div class="row p-2 mb-2 bg-primary">
+        <div
+          class="row p-5 mb-3"
+          v-if="this.comprasPorMes[2].cantComprasMes > 0"
+        >
           <h3>{{ this.store.meses[2] }}</h3>
 
           <div class="col" id="titulo">
-            Compras
+            {{ this.comprasPorMes[2].cantComprasMes }} Compras
             <!--{{this.comprasPorMes[0]}} -->
             <ul>
               <li
                 id="item"
-                v-for="compras in this.comprasPorMes[2]"
+                v-for="compras in this.comprasPorMes[2].compras"
                 :key="compras.id"
               >
                 {{ compras.mes }}
-                {{ compras.total }}
+                ${{ compras.total }}
               </li>
             </ul>
           </div>
-          <div class="col" id="titulo">Articulos</div>
+          <div class="col" id="titulo">
+            Articulos {{ this.comprasPorMes[2].articulos.length }}
+            <ul>
+              <li
+                id="item"
+                v-for="articulos in this.comprasPorMes[2].articulos"
+                :key="articulos.nombre"
+              >
+                {{ articulos.nombre }} | {{ articulos.cantidad }} | ${{
+                  articulos.monto
+                }}
+              </li>
+            </ul>
+          </div>
           <div class="row p-2 mb-2 bg-secundary">
-            <p>Total gastado:</p>
+            <p>
+              Total gastado en el mes: ${{ this.comprasPorMes[2].totalPorMes }}
+            </p>
             <p>Objetivo logrado:</p>
           </div>
+        </div>
+        <div v-else class="p-5 mb-3">
+          <h5>No hay compras registradas en {{ this.store.meses[2] }}</h5>
         </div>
       </div>
 
       <div class="container text-center">
-        <div class="row p-2 mb-2 bg-primary">
+        <div
+          class="row p-5 mb-3"
+          v-if="this.comprasPorMes[3].cantComprasMes > 0"
+        >
           <h3>{{ this.store.meses[3] }}</h3>
 
           <div class="col" id="titulo">
-            Compras
+            {{ this.comprasPorMes[3].cantComprasMes }} Compras
             <!--{{this.comprasPorMes[0]}} -->
             <ul>
               <li
                 id="item"
-                v-for="compras in this.comprasPorMes[3]"
+                v-for="compras in this.comprasPorMes[3].compras"
                 :key="compras.id"
               >
                 {{ compras.mes }}
-                {{ compras.total }}
+                ${{ compras.total }}
               </li>
             </ul>
           </div>
-          <div class="col" id="titulo">Articulos</div>
+          <div class="col" id="titulo">
+            Articulos {{ this.comprasPorMes[3].articulos.length }}
+            <ul>
+              <li
+                id="item"
+                v-for="articulos in this.comprasPorMes[3].articulos"
+                :key="articulos.nombre"
+              >
+                {{ articulos.nombre }} | {{ articulos.cantidad }} | ${{
+                  articulos.monto
+                }}
+              </li>
+            </ul>
+          </div>
           <div class="row p-2 mb-2 bg-secundary">
-            <p>Total gastado:</p>
+            <p>
+              Total gastado en el mes: ${{ this.comprasPorMes[3].totalPorMes }}
+            </p>
             <p>Objetivo logrado:</p>
           </div>
+        </div>
+        <div v-else class="p-5 mb-3">
+          <h5>No hay compras registradas en {{ this.store.meses[3] }}</h5>
         </div>
       </div>
 
       <div class="container text-center">
-        <div class="row p-2 mb-2 bg-primary">
+        <div
+          class="row p-5 mb-3"
+          v-if="this.comprasPorMes[4].cantComprasMes > 0"
+        >
           <h3>{{ this.store.meses[4] }}</h3>
 
           <div class="col" id="titulo">
-            Compras
+            {{ this.comprasPorMes[4].cantComprasMes }} Compras
             <!--{{this.comprasPorMes[0]}} -->
             <ul>
               <li
                 id="item"
-                v-for="compras in this.comprasPorMes[4]"
+                v-for="compras in this.comprasPorMes[4].compras"
                 :key="compras.id"
               >
                 {{ compras.mes }}
-                {{ compras.total }}
+                ${{ compras.total }}
               </li>
             </ul>
           </div>
-          <div class="col" id="titulo">Articulos</div>
+          <div class="col" id="titulo">
+            Articulos {{ this.comprasPorMes[4].articulos.length }}
+            <ul>
+              <li
+                id="item"
+                v-for="articulos in this.comprasPorMes[4].articulos"
+                :key="articulos.nombre"
+              >
+                {{ articulos.nombre }} | {{ articulos.cantidad }} | ${{
+                  articulos.monto
+                }}
+              </li>
+            </ul>
+          </div>
           <div class="row p-2 mb-2 bg-secundary">
-            <p>Total gastado:</p>
+            <p>
+              Total gastado en el mes: ${{ this.comprasPorMes[4].totalPorMes }}
+            </p>
             <p>Objetivo logrado:</p>
           </div>
+        </div>
+        <div v-else class="p-5 mb-3">
+          <h5>No hay compras registradas en {{ this.store.meses[4] }}</h5>
         </div>
       </div>
 
       <div class="container text-center">
-        <div class="row p-2 mb-2 bg-primary">
+        <div
+          class="row p-5 mb-3"
+          v-if="this.comprasPorMes[5].cantComprasMes > 0"
+        >
           <h3>{{ this.store.meses[5] }}</h3>
 
           <div class="col" id="titulo">
-            Compras
+            {{ this.comprasPorMes[5].cantComprasMes }} Compras
             <!--{{this.comprasPorMes[0]}} -->
             <ul>
               <li
                 id="item"
-                v-for="compras in this.comprasPorMes[5]"
+                v-for="compras in this.comprasPorMes[5].compras"
                 :key="compras.id"
               >
                 {{ compras.mes }}
-                {{ compras.total }}
+                ${{ compras.total }}
               </li>
             </ul>
           </div>
-          <div class="col" id="titulo">Articulos</div>
+          <div class="col" id="titulo">
+            Articulos {{ this.comprasPorMes[5].articulos.length }}
+            <ul>
+              <li
+                id="item"
+                v-for="articulos in this.comprasPorMes[5].articulos"
+                :key="articulos.nombre"
+              >
+                {{ articulos.nombre }} | {{ articulos.cantidad }} | ${{
+                  articulos.monto
+                }}
+              </li>
+            </ul>
+          </div>
           <div class="row p-2 mb-2 bg-secundary">
-            <p>Total gastado:</p>
+            <p>
+              Total gastado en el mes: ${{ this.comprasPorMes[5].totalPorMes }}
+            </p>
             <p>Objetivo logrado:</p>
           </div>
+        </div>
+        <div v-else class="p-5 mb-3">
+          <h5>No hay compras registradas en {{ this.store.meses[5] }}</h5>
         </div>
       </div>
 
       <div class="container text-center">
-        <div class="row p-2 mb-2 bg-primary">
+        <div
+          class="row p-5 mb-3"
+          v-if="this.comprasPorMes[6].cantComprasMes > 0"
+        >
           <h3>{{ this.store.meses[6] }}</h3>
 
           <div class="col" id="titulo">
-            Compras
+            {{ this.comprasPorMes[6].cantComprasMes }} Compras
             <!--{{this.comprasPorMes[0]}} -->
             <ul>
               <li
                 id="item"
-                v-for="compras in this.comprasPorMes[6]"
+                v-for="compras in this.comprasPorMes[6].compras"
                 :key="compras.id"
               >
                 {{ compras.mes }}
-                {{ compras.total }}
+                ${{ compras.total }}
               </li>
             </ul>
           </div>
-          <div class="col" id="titulo">Articulos</div>
+          <div class="col" id="titulo">
+            Articulos {{ this.comprasPorMes[6].articulos.length }}
+            <ul>
+              <li
+                id="item"
+                v-for="articulos in this.comprasPorMes[6].articulos"
+                :key="articulos.nombre"
+              >
+                {{ articulos.nombre }} | {{ articulos.cantidad }} | ${{
+                  articulos.monto
+                }}
+              </li>
+            </ul>
+          </div>
           <div class="row p-2 mb-2 bg-secundary">
-            <p>Total gastado:</p>
+            <p>
+              Total gastado en el mes: ${{ this.comprasPorMes[6].totalPorMes }}
+            </p>
             <p>Objetivo logrado:</p>
           </div>
+        </div>
+        <div v-else class="p-5 mb-3">
+          <h5>No hay compras registradas en {{ this.store.meses[6] }}</h5>
         </div>
       </div>
 
       <div class="container text-center">
-        <div class="row p-2 mb-2 bg-primary">
+        <div
+          class="row p-5 mb-3"
+          v-if="this.comprasPorMes[7].cantComprasMes > 0"
+        >
           <h3>{{ this.store.meses[7] }}</h3>
 
           <div class="col" id="titulo">
-            Compras
+            {{ this.comprasPorMes[7].cantComprasMes }} Compras
             <!--{{this.comprasPorMes[0]}} -->
             <ul>
               <li
                 id="item"
-                v-for="compras in this.comprasPorMes[7]"
+                v-for="compras in this.comprasPorMes[7].compras"
                 :key="compras.id"
               >
                 {{ compras.mes }}
-                {{ compras.total }}
+                ${{ compras.total }}
               </li>
             </ul>
           </div>
-          <div class="col" id="titulo">Articulos</div>
+          <div class="col" id="titulo">
+            Articulos {{ this.comprasPorMes[7].articulos.length }}
+            <ul>
+              <li
+                id="item"
+                v-for="articulos in this.comprasPorMes[7].articulos"
+                :key="articulos.nombre"
+              >
+                {{ articulos.nombre }} | {{ articulos.cantidad }} | ${{
+                  articulos.monto
+                }}
+              </li>
+            </ul>
+          </div>
           <div class="row p-2 mb-2 bg-secundary">
-            <p>Total gastado:</p>
+            <p>
+              Total gastado en el mes: ${{ this.comprasPorMes[7].totalPorMes }}
+            </p>
             <p>Objetivo logrado:</p>
           </div>
+        </div>
+        <div v-else class="p-5 mb-3">
+          <h5>No hay compras registradas en {{ this.store.meses[7] }}</h5>
         </div>
       </div>
 
       <div class="container text-center">
-        <div class="row p-2 mb-2 bg-primary">
+        <div
+          class="row p-5 mb-3"
+          v-if="this.comprasPorMes[8].cantComprasMes > 0"
+        >
           <h3>{{ this.store.meses[8] }}</h3>
 
           <div class="col" id="titulo">
-            Compras
+            {{ this.comprasPorMes[8].cantComprasMes }} Compras
             <!--{{this.comprasPorMes[0]}} -->
             <ul>
               <li
                 id="item"
-                v-for="compras in this.comprasPorMes[8]"
+                v-for="compras in this.comprasPorMes[8].compras"
                 :key="compras.id"
               >
                 {{ compras.mes }}
-                {{ compras.total }}
+                ${{ compras.total }}
               </li>
             </ul>
           </div>
-          <div class="col" id="titulo">Articulos</div>
+          <div class="col" id="titulo">
+            Articulos {{ this.comprasPorMes[8].articulos.length }}
+            <ul>
+              <li
+                id="item"
+                v-for="articulos in this.comprasPorMes[8].articulos"
+                :key="articulos.nombre"
+              >
+                {{ articulos.nombre }} | {{ articulos.cantidad }} | ${{
+                  articulos.monto
+                }}
+              </li>
+            </ul>
+          </div>
           <div class="row p-2 mb-2 bg-secundary">
-            <p>Total gastado:</p>
+            <p>
+              Total gastado en el mes: ${{ this.comprasPorMes[8].totalPorMes }}
+            </p>
             <p>Objetivo logrado:</p>
           </div>
+        </div>
+        <div v-else class="p-5 mb-3">
+          <h5>No hay compras registradas en {{ this.store.meses[8] }}</h5>
         </div>
       </div>
 
       <div class="container text-center">
-        <div class="row p-2 mb-2 bg-primary">
+        <div
+          class="row p-5 mb-3"
+          v-if="this.comprasPorMes[9].cantComprasMes > 0"
+        >
           <h3>{{ this.store.meses[9] }}</h3>
 
           <div class="col" id="titulo">
-            Compras
+            {{ this.comprasPorMes[9].cantComprasMes }} Compras
             <!--{{this.comprasPorMes[0]}} -->
             <ul>
               <li
                 id="item"
-                v-for="compras in this.comprasPorMes[9]"
+                v-for="compras in this.comprasPorMes[9].compras"
                 :key="compras.id"
               >
                 {{ compras.mes }}
-                {{ compras.total }}
+                ${{ compras.total }}
               </li>
             </ul>
           </div>
-          <div class="col" id="titulo">Articulos</div>
+          <div class="col" id="titulo">
+            Articulos {{ this.comprasPorMes[9].articulos.length }}
+            <ul>
+              <li
+                id="item"
+                v-for="articulos in this.comprasPorMes[9].articulos"
+                :key="articulos.nombre"
+              >
+                {{ articulos.nombre }} | {{ articulos.cantidad }} | ${{
+                  articulos.monto
+                }}
+              </li>
+            </ul>
+          </div>
           <div class="row p-2 mb-2 bg-secundary">
-            <p>Total gastado:</p>
+            <p>
+              Total gastado en el mes: ${{ this.comprasPorMes[9].totalPorMes }}
+            </p>
             <p>Objetivo logrado:</p>
           </div>
+        </div>
+        <div v-else class="p-5 mb-3">
+          <h5>No hay compras registradas en {{ this.store.meses[9] }}</h5>
         </div>
       </div>
 
       <div class="container text-center">
-        <div class="row p-2 mb-2 bg-primary">
+        <div
+          class="row p-5 mb-3"
+          v-if="this.comprasPorMes[10].cantComprasMes > 0"
+        >
           <h3>{{ this.store.meses[10] }}</h3>
 
           <div class="col" id="titulo">
-            Compras
+            {{ this.comprasPorMes[10].cantComprasMes }} Compras
             <!--{{this.comprasPorMes[0]}} -->
             <ul>
               <li
                 id="item"
-                v-for="compras in this.comprasPorMes[10]"
+                v-for="compras in this.comprasPorMes[10].compras"
                 :key="compras.id"
               >
                 {{ compras.mes }}
-                {{ compras.total }}
+                ${{ compras.total }}
               </li>
             </ul>
           </div>
-          <div class="col" id="titulo">Articulos</div>
+          <div class="col" id="titulo">
+            Articulos {{ this.comprasPorMes[10].articulos.length }}
+            <ul>
+              <li
+                id="item"
+                v-for="articulos in this.comprasPorMes[10].articulos"
+                :key="articulos.nombre"
+              >
+                {{ articulos.nombre }} | {{ articulos.cantidad }} | ${{
+                  articulos.monto
+                }}
+              </li>
+            </ul>
+          </div>
           <div class="row p-2 mb-2 bg-secundary">
-            <p>Total gastado:</p>
+            <p>
+              Total gastado en el mes: ${{ this.comprasPorMes[10].totalPorMes }}
+            </p>
             <p>Objetivo logrado:</p>
           </div>
+        </div>
+        <div v-else class="p-5 mb-3">
+          <h5>No hay compras registradas en {{ this.store.meses[10] }}</h5>
         </div>
       </div>
 
       <div class="container text-center">
-        <div class="row p-2 mb-2 bg-primary">
+        <div
+          class="row p-5 mb-3"
+          v-if="this.comprasPorMes[11].cantComprasMes > 0"
+        >
           <h3>{{ this.store.meses[11] }}</h3>
 
           <div class="col" id="titulo">
-            Compras
+            {{ this.comprasPorMes[11].cantComprasMes }} Compras
             <!--{{this.comprasPorMes[0]}} -->
             <ul>
               <li
                 id="item"
-                v-for="compras in this.comprasPorMes[11]"
+                v-for="compras in this.comprasPorMes[11].compras"
                 :key="compras.id"
               >
                 {{ compras.mes }}
-                {{ compras.total }}
+                ${{ compras.total }}
               </li>
             </ul>
           </div>
-          <div class="col" id="titulo">Articulos</div>
+          <div class="col" id="titulo">
+            Articulos {{ this.comprasPorMes[11].articulos.length }}
+            <ul>
+              <li
+                id="item"
+                v-for="articulos in this.comprasPorMes[11].articulos"
+                :key="articulos.nombre"
+              >
+                {{ articulos.nombre }} | {{ articulos.cantidad }} | ${{
+                  articulos.monto
+                }}
+              </li>
+            </ul>
+          </div>
           <div class="row p-2 mb-2 bg-secundary">
-            <p>Total gastado:</p>
+            <p>
+              Total gastado en el mes: ${{ this.comprasPorMes[11].totalPorMes }}
+            </p>
             <p>Objetivo logrado:</p>
           </div>
         </div>
+        <div v-else class="p-5 mb-3">
+          <h5>No hay compras registradas en {{ this.store.meses[11] }}</h5>
+        </div>
       </div>
     </div>
-
-    <button @click="obtenerComprasMensuales"></button>
+    <button @click="clasificarArticulos">probando</button>
+    <!--<button @click="obtenerComprasMensuales"></button>-->
   </div>
 </template>
 
@@ -355,7 +606,20 @@ export default {
   data() {
     return {
       compras: [],
-      comprasPorMes: [[], [], [], [], [], [], [], [], [], [], [], []],
+      comprasPorMes: [
+        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+      ],
       fecha: this.registrarFecha(),
     };
   },
@@ -368,6 +632,7 @@ export default {
 
       this.compras = data;
       this.obtenerComprasMensuales();
+      this.clasificarArticulos();
     }
   },
   methods: {
@@ -405,17 +670,54 @@ export default {
         let nvaFecha = new Date(element.mes);
 
         //guardo en compraPorMes en la posición que se obtiene del més
-        this.comprasPorMes[nvaFecha.getMonth()].push(element);
-
-        console.log(
-          `esto tengo en comprasPorMes en la posicion ${nvaFecha.getMonth()}`
+        this.comprasPorMes[nvaFecha.getMonth()].compras.push(element);
+        this.comprasPorMes[nvaFecha.getMonth()].totalPorMes += element.total;
+        this.comprasPorMes[nvaFecha.getMonth()].cantComprasMes++;
+        this.comprasPorMes[nvaFecha.getMonth()].articulos.push(
+          element.articulos
         );
-        console.log(this.comprasPorMes[nvaFecha.getMonth()]);
+
         //console.log('datos de la variable ya modificada a fecha');
         // console.log(nvaFecha.getMonth());
         //console.log(typeof(nvaFecha));
 
         // console.log(nvaFecha.getMonth());
+      }
+    },
+    clasificarArticulos() {
+      for (let i = 0; i < this.comprasPorMes.length; i++) {
+        const comprasPorMes = this.comprasPorMes[i];
+        let articulos = [];
+        for (let x = 0; x < comprasPorMes.articulos.length; x++) {
+          const articulosDeUnMes = comprasPorMes.articulos[x];
+
+          for (let y = 0; y < articulosDeUnMes.length; y++) {
+            const unArticulo = articulosDeUnMes[y];
+            
+
+            let articuloBuscado = articulos.find(
+              (element) => element.nombre.toUpperCase() == unArticulo.nombre.toUpperCase()
+            );
+            console.log("el articulo buscado es: ");
+            console.log(articuloBuscado);
+            if (articuloBuscado == null) {
+              const miPrototipoDeObjeto = {
+                nombre: unArticulo.nombre,
+                cantidad: parseInt(unArticulo.cantidad),
+                monto: unArticulo.subTotal,
+              };
+
+              articulos.push(miPrototipoDeObjeto);
+            } else {
+              let cantidadPars = parseInt(unArticulo.cantidad)
+              articuloBuscado.cantidad = articuloBuscado.cantidad + cantidadPars;
+              articuloBuscado.monto = articuloBuscado.monto + unArticulo.subTotal;
+            }
+          }
+
+          //esto tengo q borrar
+        }
+        this.comprasPorMes[i].articulos = articulos;
       }
     },
   },
