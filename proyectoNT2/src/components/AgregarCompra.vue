@@ -1,8 +1,15 @@
 <template>
   <div>
     <div id="agregarCompra" @agregarArticulos.prevent style="margin: auto">
-      <h2>Registra una compra</h2>
-      <div class="row">
+      <div style="padding:20px" class="row">
+        <div class="col">
+            <h2>Registra una compra</h2>
+        </div>
+            <div class="col" v-if="this.compra.articulos.length > 0">
+                <h3 bg-secondary id="cantArticulos">{{this.compra.articulos.length}}</h3>
+            </div>
+      </div>
+      <div class="row" style="width:75%; margin:auto ">
         <span class="input-group-text">Fecha de la compra</span>
         <div style="margin: 10px" id="marco" class="form-floating">
           <input
@@ -52,19 +59,48 @@
           <label for="floatingInputGroup1"></label>
         </div>
 
-        <button type="button" class="btn btn-primary" @click="crearCompra">
-          Crear compra
-        </button>
-        <br />
-        <br />
+        <div class="row">
+          <div class="row">
+              <button type="button" id="agregarArticulo"  class="btn btn-primary" @click="agregarArticulos">
+                  Agregar articulo
+              </button>
+          </div>
+        </div>
 
-        <button type="button" class="btn btn-primary" @click="agregarArticulos">
-          Agregar articulo
-        </button>
+        <div class="row" style="padding:20px">
+               <button type="button" id="registrarCompra" class="btn btn-primary" @click="crearCompra">
+                  Registrar compra
+               </button>
+        </div>
+          
+     
 
-        {{ compra.articulos }}
-        <br />
-        {{ compra.total }}
+       
+
+        <div class="row" v-if="this.compra.articulos.length > 0">
+            <table class="table bordered striped">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                  
+                  </tr>
+                </thead>
+                <tbody>
+                      <tr v-for="articulo in compra.articulos" v-bind:key="articulo"> 
+                        <td>{{articulo.nombre}}</td>
+                        <td>{{articulo.precio}}</td>
+                        <td>{{articulo.cantidad}}</td>
+                        <td>{{articulo.subTotal}}</td>
+                        
+                      </tr>
+                </tbody>
+            </table>
+        </div>
+
+        
 
         <!--<router-view :key="$route.path"> </router-view>-->
 
@@ -200,5 +236,31 @@ export default {
   margin: auto;
   width: 400px;
   height: 700px;
+}
+
+#cantArticulos{
+   margin: auto;
+   width:50px;
+   height:50px;
+   border:3px solid black;
+   border-radius:80px;
+   text-align: center;
+   color: black;
+   justify-content: center;
+   align-content: center;
+}
+
+#agregarArticulo{
+  width: 20%;
+  border:3px solid white;
+  border-radius:20px;
+
+}
+
+#registrarCompra{
+  width: 50%;
+  border:3px solid white;
+  border-radius:20px;
+  margin: auto;
 }
 </style>
