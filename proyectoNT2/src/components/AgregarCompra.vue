@@ -77,7 +77,7 @@
 
        
 
-        <div class="row" v-if="this.compra.articulos.length > 0">
+        <div class="row" v-if="verArticulos">
             <table class="table bordered striped">
                 <thead>
                   <tr>
@@ -89,11 +89,12 @@
                   </tr>
                 </thead>
                 <tbody>
-                      <tr v-for="articulo in compra.articulos" v-bind:key="articulo"> 
+                      <tr v-for="(articulo, index) in compra.articulos" v-bind:key="index"> 
                         <td>{{articulo.nombre}}</td>
                         <td>{{articulo.precio}}</td>
                         <td>{{articulo.cantidad}}</td>
                         <td>{{articulo.subTotal}}</td>
+                        <td> <i class="bi bi-x-circle-fill" @click="compra.articulos.splice(index, 1)"> </i> </td>
                         
                       </tr>
                 </tbody>
@@ -170,10 +171,9 @@ export default {
 
           //objeto router -> tiene 1 pila de ruteo
           //this.$router.push(`/agregarCompra/${id}`)
-          console.log("Se creo la compra");
-          console.log(data.data);
-          console.log("este es mi idDeLaCompra");
-          console.log(this.idDeLaCompra);
+
+          this.$router.push('/')
+
         });
       }
     },
@@ -200,6 +200,7 @@ export default {
     },
     agregarArticulos() {
       let articulos = {
+        id: this.compra.articulos.length + 1,
         nombre: this.nombreArticulo,
         precio: this.precioArticulo,
         cantidad: this.cantidadArticulo,
@@ -217,12 +218,16 @@ export default {
     },
     calcularSubTotal(precio, cantidad) {
       return precio * cantidad;
-    },
+    }
   },
+ 
   computed: {
     estado() {
       return this.store.loginStatus;
     },
+    verArticulos(){
+      return this.compra.articulos.length
+    }
   },
 };
 </script>
