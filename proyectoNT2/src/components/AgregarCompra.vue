@@ -94,7 +94,7 @@
                         <td>{{articulo.precio}}</td>
                         <td>{{articulo.cantidad}}</td>
                         <td>{{articulo.subTotal}}</td>
-                        <td> <i class="bi bi-x-circle-fill" @click="compra.articulos.splice(index, 1)"> </i> </td>
+                        <td> <i class="bi bi-x-circle-fill" style="cursor:pointer" @click="compra.articulos.splice(index, 1)"> </i> </td>
                         
                       </tr>
                 </tbody>
