@@ -10,6 +10,9 @@ export const useAppStore = defineStore('appStore', {
             idCompras:          [],
             meses:              ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
             limiteDeCompras:    5000,
+            first:               true,
+            objetivo:            9000,
+            
         }
     },
     getters:{

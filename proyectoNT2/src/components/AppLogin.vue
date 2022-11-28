@@ -91,6 +91,7 @@ export default {
 
           console.log('el status es: ');
           console.log(this.store.loginStatus);
+          this.$router.push('/product')
 
         } else {
           alert("El usuario no existe");

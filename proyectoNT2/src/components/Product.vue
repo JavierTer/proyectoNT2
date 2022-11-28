@@ -1,30 +1,65 @@
 <template>
   <div>
     <br />
+    <div v-if="mostrarCompras">
+          <div class="row">
+          <div class="row">
+              <h1 >Hola {{ this.store.nameUser }}, tenes {{this.compras.length}} compras registradas</h1>
+          </div>
+          <div class="row">
+               <div class="col" id="botones">
+                  <button class="btn btn-primary" style="margin:10px" @click="ordenarCompras" >Ordenar por fecha {{this.orderByDate == 1 ?'⬆':'⬇'}}</button>
+                  <button class="btn btn-primary" style="margin:10px"  @click="ordenarComprasMonto" >Ordenar por monto {{this.orderByPrice == 1 ?'⬆':'⬇'}}</button>
+               </div>
+                
+          </div>
+              
+          
+        </div>
     
-    <h1>Hola {{ this.store.nameUser }}, estas son tus compras</h1>
-    <h4>Tenes {{this.compras.length}} compras registradas</h4>
-    
-    <div class="list-group" v-if="mostrarCompras">
-      
-      <button class="btn btn-primary" @click="ordenarCompras" >Ordenar por fecha</button>
+     <div class="list-group" >
       <br>
+      <div class="row">
+        <div class="col" style="width:45%">
+             <a  
+                    v-for=" compra in compras" 
+                    :key="compra.id"
+                    @click="goTo(compra.id)"
+                    style="cursor: pointer"
+                    class="list-group-item list-group-item-acion"
+                  > 
+                  
+                  <div class="row">
+                        <div class="col">
+                            <div class="row"> Fecha: </div>
+                            <div class="row">{{compra.mes}}</div>  
+                        </div>
+                        <div class="col" id="monto">
+                            <div class="row">Monto</div>
+                             <div class="row">${{compra.total}}</div>           
+                        </div>
+                       
+                  </div>
+              </a>
+        </div>
+        <div class="col" style="width:55%">
+                <router-view :key="$route.path"> </router-view>
+        </div>
+      </div>
+    
+    </div>
+    </div>
+    
+    
+   
+                     
 
-      <a  
-          v-for=" compra in compras" 
-          :key="compra.id"
-          @click="goTo(compra.id)"
-          style="cursor: pointer"
-          class="list-group-item list-group-item-acion"
-        > Fecha de la compra: {{compra.mes}} 
-          - |     
-          - Monto:  ${{compra.total}}
-     </a>
+              
+      
       
        
-          <router-view :key="$route.path"> </router-view>
+          
 
-    </div>
   </div>
 </template>
 
@@ -38,7 +73,8 @@ export default {
   data() {
     return {
       compras: [],
-      orderBy: 1, // 1 fecha, 2 costo
+      orderByDate: 1,
+      orderByPrice: 1, // 1 fecha, 2 costo
     };
   },
   async created() {
@@ -56,17 +92,40 @@ export default {
     }
   },
   methods: {
-     orderByDate() {
-      this.orderBy = 1;
-    },
-    orderByCost() {
-      this.orderBy = 2;
+     
+    edit(){
+      console.log('hola');
     },
    ordenarCompras() {
     //const comprasPorFecha =  [...this.compras].sort((a, b) => new Date(a.mes).getTime() - new Date(b.mes).getTime());
     //return comprasPorFecha
     //console.log(typeof(this.compras[5].mes));
-    return this.compras.sort((a,b) => b.mes.localeCompare(a.mes))
+    if(this.orderByDate == 1){
+         this.orderByDate = 2;
+         console.log(this.orderByDate);
+         return this.compras.sort((a,b) => b.mes.localeCompare(a.mes))
+        
+    }
+    else {
+
+        this.orderByDate = 1;
+        console.log(this.orderByDate);
+        return this.compras.sort((a,b) => a.mes.localeCompare(b.mes))
+    } 
+    },
+    ordenarComprasMonto() {
+    if(this.orderByPrice == 1){
+         this.orderByPrice = 2;
+         console.log(this.orderByPrice);
+         return this.compras.sort((a,b) => b.total - a.total)
+        
+    }
+    else {
+
+        this.orderByPrice = 1;
+        console.log(this.orderByPrice);
+        return this.compras.sort((a,b) => a.total - b.total)
+    } 
     },
     goTo(id){
       //objeto router -> tiene 1 pila de ruteo
@@ -101,3 +160,21 @@ export default {
   }
 };
 </script>
+
+<style >
+  #button_edit {
+    text-align: end;
+    width: 20%;
+  }
+
+  #monto {
+    width: 20%;
+    text-align: start;
+  }
+
+  #botones{
+    text-align: start;
+  }
+ 
+ 
+</style>

@@ -1,15 +1,10 @@
 <template>
     <div>
-        <div v-if="estado">
+        <div v-if="estado" style="text-align:center">
           <h1>Quieres cerrar sesión?</h1>
           <br>
           <button v-on:click="cerrarSesion"  class="btn btn-dark"> Cerrar sesión</button>
 
-        </div>
-
-        <div v-if="!estado">
-            <h2>Gracias por usar Mis Cuentas !!! </h2>
-            <router-link class="btn btn-primary" to="/"> Ir a home </router-link>
         </div>
 
     </div>
@@ -32,10 +27,12 @@ export default {
   methods: {
     cerrarSesion(){
       //ver bien como cambiar el loginStatus
+   {
+   if(!confirm('Desea cerrar sesión?'))return;
+        this.store.loginStatus = false;          
+                  this.$router.push('/')
 
-    this.store.loginStatus = false;          
-    console.log('el status es: ');
-    console.log(this.store.loginStatus);
+   }
 
     }
    
