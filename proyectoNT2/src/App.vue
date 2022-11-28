@@ -5,6 +5,7 @@ import AppLogout from './components/AppLogout.vue'
 import AppFooter from './components/AppFooter.vue'
 import AppRegister from './components/AppRegister.vue'
 import agregarCompra from './components/AgregarCompra.vue'
+import EditarCompra from './components/EditarCompra.vue'
 
 
 

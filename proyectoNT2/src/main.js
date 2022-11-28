@@ -8,7 +8,7 @@ import AppLogin from './components/AppLogin.vue'
 import AppLogout from './components/AppLogout.vue'
 import AppRegister from './components/AppRegister.vue'
 import AgregarCompra from './components/AgregarCompra.vue'
-//import EditarCompra from './components/EditarCompra.vue'
+import EditarCompra from './components/EditarCompra.vue'
 //import EstadisticaMensual from './components/EstadisticaMensual.vue'
 
 
@@ -40,8 +40,10 @@ const routes = [
   {path: "/product/", component: Product, 
   children:
   [
-    {path: ":id", component: Articulo}
-  ]},
+    {path: ":id", component: Articulo,
+    children:
+    [{path: ":id", component: EditarCompra}]
+  }]},
   {path:"/articulo", component: Articulo},
   {path: "/appLogin", component: AppLogin },
   {path: "/appLogout", component: AppLogout },

@@ -20,7 +20,7 @@
      <div class="list-group" >
       <br>
       <div class="row">
-        <div class="col" style="width:45%">
+        <div class="col" style="width:25%">
              <a  
                     v-for=" compra in compras" 
                     :key="compra.id"
@@ -42,7 +42,7 @@
                   </div>
               </a>
         </div>
-        <div class="col" style="width:55%">
+        <div class="col" style="width:70%">
                 <router-view :key="$route.path"> </router-view>
         </div>
       </div>

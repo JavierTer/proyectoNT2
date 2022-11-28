@@ -1,17 +1,20 @@
 <template>
   <div>
-    <div id="agregarCompra" @agregarArticulos.prevent style="margin: auto">
+    Editar compra
+    {{this.id}}
+
+     <div id="agregarCompra" @agregarArticulos.prevent style="margin: auto">
       <div style="padding:20px" class="row">
-        <div class="col">
-            <h2>Registra una compra</h2>
+        <div class="row">
+            <div>Editar compra</div>
         </div>
-            <div class="col" v-if="this.compra.articulos.length > 0">
+            <div class="row" v-if="this.compra.articulos.length > 0">
                 <h3 bg-secondary id="cantArticulos">{{this.compra.articulos.length}}</h3>
             </div>
       </div>
       <div class="row" style="width:75%; margin:auto ">
         <span class="input-group-text">Fecha de la compra</span>
-        <div style="margin: 10px" id="marco" class="form-floating">
+        <div style="margin: 2px" id="marco" class="form-floating">
           <input
             type="date"
             class="form-control"
@@ -62,7 +65,8 @@
         <div class="row">
           <div class="row">
               <button type="button" id="agregarArticulo"  class="btn btn-primary" @click="agregarArticulos">
-                  Agregar articulo
+                  <i class="bi bi-plus"></i>
+
               </button>
           </div>
         </div>
@@ -110,6 +114,10 @@
         </button> -->
       </div>
     </div>
+
+    <div class="col">
+           <router-link to="/product">Cerrar</router-link>
+    </div>
   </div>
 </template>
 <script>
@@ -122,6 +130,8 @@ export default {
   },
   data() {
     return {
+      id: this.$route.params.id,
+
       compra: {
         mes: new Date(),
         articulos: [],
@@ -131,21 +141,42 @@ export default {
       nombreArticulo: "",
       precioArticulo: 0,
       cantidadArticulo: 0,
-      pathCompra: `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras`,
+      pathCompraEdit: `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras/${this.$route.params.id}`
       // pathArticulo: `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras/1/articulos`
+      ///users/:id/compras/:id
     };
   },
-  async created() {},
+  async created() {
+    ///users/:id/compras/:id
+    if (this.store.loginStatus) {
+      const resultado = await fetch(
+        `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras/${this.id}`
+      );
+      const data = await resultado.json();
+      
+      //this.compras = this.buscarComprasDelUsuario(this.store.idUser)
+
+      this.compra = data;
+      //extraerFecha()
+     // this.guardarIdCompras()
+    }
+  
+  },
+   watch: {
+    $route(to, from) {
+      this.id = this.$route.params.id;
+    },
+  },
   methods: {
     validar() {
       return true;
-    },
+    },/*
     async verSiHayArticulos() {
       const compra = await fetch(
         `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras/${this.idDeLaCompra}`
       );
       const data = await resultado.json();
-    },
+    },*/
     /*
     async guardarCompra() {
       this.compra.articulos.push({
@@ -165,14 +196,14 @@ export default {
         alert("Debe agregar al menos 1 articulo");
       } else {
         this.compra.total = this.calcularTotal(this.compra.articulos);
-        console.log(this.compra.total);
-        await axios.post(this.pathCompra, this.compra).then((data) => {
+        await axios.put(this.pathCompraEdit, this.compra).then((data) => {
           this.idDeLaCompra = data.data.id;
 
           //objeto router -> tiene 1 pila de ruteo
           //this.$router.push(`/agregarCompra/${id}`)
-
-          this.$router.push('/')
+          console.log('Modifiqué la siguiente compra');
+          console.log(this.id);
+          this.$router.push('/product')
 
         });
       }
@@ -218,16 +249,17 @@ export default {
     },
     calcularSubTotal(precio, cantidad) {
       return precio * cantidad;
-    }
-  },
- 
-  computed: {
-    estado() {
-      return this.store.loginStatus;
     },
     verArticulos(){
       return this.compra.articulos.length
     }
+  },
+ 
+   computed: {
+    estado() {
+      return this.store.loginStatus;
+    },
+    
   },
 };
 </script>
@@ -257,9 +289,10 @@ export default {
 
 #agregarArticulo{
   width: 20%;
-  border:3px solid white;
   border-radius:20px;
-
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 #registrarCompra{

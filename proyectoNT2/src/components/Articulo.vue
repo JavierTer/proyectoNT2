@@ -25,11 +25,18 @@
            <router-link to="/product">Cerrar</router-link>
       </div>
       <div class="col" id="button_edit">
-        <button i class="bi bi-pencil" style="margin-right: 2px"></button>
+        <button i class="bi bi-pencil" style="margin-right: 2px" @click="goTo(id)"
+        ></button>
+      </div>
+       <div class="col" id="button_edit">
+        <button i class="bi bi-trash3" style="margin-right: 2px" @click="borrar(id)"
+        ></button>
       </div>
     </div>
 
     <br>
+
+     <router-view :key="$route.path"> </router-view>
 
 
   </div>
@@ -37,6 +44,8 @@
 
 <script>
 import { useAppStore } from "../store";
+import axios from "axios";
+
 export default {
   setup() {
     const store = useAppStore();
@@ -76,7 +85,25 @@ export default {
     mostrarCompras() {
       return this.store.compras.length > 0;
     },
+    goTo(id){
 
+      //objeto router -> tiene 1 pila de ruteo
+      this.$router.push(`/product/articulo/${id}`)
+
+    },
+   async borrar(id){
+      ///users/:id/compras/:id
+       
+        await axios.delete(`https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras/${this.id}`).then((data) => {
+
+          //objeto router -> tiene 1 pila de ruteo
+          //this.$router.push(`/agregarCompra/${id}`)
+          console.log('Borre la siguiente compra');
+          console.log(this.id);
+          this.$router.push('/');
+
+        });
+    },
     /*calcularTotal(){
       const total = 0
       for (let index = 0; index < this.articulos.length; index++) {
