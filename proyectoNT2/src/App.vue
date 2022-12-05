@@ -6,6 +6,7 @@ import AppFooter from './components/AppFooter.vue'
 import AppRegister from './components/AppRegister.vue'
 import agregarCompra from './components/AgregarCompra.vue'
 import EditarCompra from './components/EditarCompra.vue'
+import EstadisticaMensual from './components/EstadisticaMensual.vue'
 
 
 

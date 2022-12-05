@@ -11,7 +11,7 @@ export const useAppStore = defineStore('appStore', {
             meses:              ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
             limiteDeCompras:    5000,
             first:               true,
-            objetivo:            9000,
+            gastoMaximo:         []
             
         }
     },
@@ -25,7 +25,8 @@ export const useAppStore = defineStore('appStore', {
         getIdUser:(state)            =>  state.idAdminUser,
         getNameUser:(state)          =>  state.nameAdmin,
         getContadorRegistros:(state) =>  state.contadorRegistros,
-        getMeses: (state)            =>  state.meses
+        getMeses: (state)            =>  state.meses,
+        getGastoMaximo:(state)       =>  state.gastoMaximo
 
     },
     actions:{

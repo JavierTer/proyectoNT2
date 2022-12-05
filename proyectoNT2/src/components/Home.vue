@@ -9,15 +9,32 @@
 
       <br />
       <ul class="list-group" style="cursor: pointer">
-        <router-link
-          class="list-group-item active"
+        <li>
+          <router-link
+          class="list-group-item "
           aria-current="true"
-          to="appRegister "
+          to="appRegister"
           >Registrate</router-link
         >
-        <li class="list-group-item">Establece un monto máximo mensual</li>
-        <li class="list-group-item">Inicia sesión</li>
-        <li class="list-group-item">Registrá tus compras</li>
+        </li>
+        
+        <li class="list-group-item">
+          <router-link
+          class="list-group-item "
+          aria-current="true"
+          to="EstadisticaMensual"
+          >Establece un monto máximo mensual</router-link
+        >
+        </li>
+        <li class="list-group-item">
+          <router-link
+          class="list-group-item "
+          aria-current="true"
+          to="AppLogin"
+          >Inicia sesión</router-link
+        >
+        </li>
+       <!-- <li class="list-group-item">Registrá tus compras</li>-->
       </ul>
     </div>
 
@@ -79,6 +96,8 @@
                     </div>
                     <div v-else>
                       <h6>No se registraron compras en {{meses[index]}}</h6>
+                      <!--<p>Su objetivo para este mes fue: {{gastoMaximo}}</p>-->
+                      <p></p>
                     </div>
                    
             </div>
@@ -133,6 +152,7 @@ export default {
         "Diciembre",
       ],
       first: true,
+      gastoMaximo: this.store.getGastoMaximo
     };
   },
   async created() {
@@ -250,6 +270,9 @@ export default {
         this.comprasPorMes[i].articulos = articulos;
       }
     },
+    verSaldo(){
+
+    }
   },
 };
 </script>

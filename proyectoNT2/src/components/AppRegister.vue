@@ -1,10 +1,8 @@
 <template>
-    
-   <div>
-    <h1 v-if="estado" id="title">Bienvenido {{ this.store.nameUser }} !!! </h1>
+  <div>
 
-    <div id="bloqueRegister">
-    <h2>Registrate</h2>
+     <div id="bloqueLogin">
+    <h2>Registro</h2>
       <div class="row">
         <span class="input-group-text">Usuario</span>
         <div style="margin: 10px" id="marco" class="form-floating">
@@ -12,7 +10,7 @@
             type="text"
             class="form-control"
             id="floatingInputGroup1"
-            placeholder="Username"
+            placeholder="nombre de usuario"
             v-model="usuario.userName"
           />
           <label for="floatingInputGroup1"></label>
@@ -30,16 +28,16 @@
           <label for="floatingInputGroup1"></label>
         </div>
 
-        <button class="btn btn-primary" v-on:click="validar">Ingresar</button>
+        <button class="btn btn-primary" v-on:click="validar">Registrarse</button>
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
 
 import { useAppStore } from "../store";
+import axios from "axios";
 
 export default {
   
@@ -50,15 +48,16 @@ export default {
   data() {
     return {
       usuario: {
-        userName: "",
-        pass: "",
+        userName: '',
+        pass: ''
       },
       users: [],
+      ruta : `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users`
     };
   },
   async created() {
     const resultado = await fetch(
-      `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users`
+      this.ruta
     );
 
     const data = await resultado.json();
@@ -77,7 +76,7 @@ export default {
             alert('Debe elegir otro nombre de usuario')
 
         } else {
-            agregarUsuario(this.usuario.userName, this.usuario,pass)
+            this.agregarUsuario(this.usuario.userName, this.usuario.pass)
         }
       }
     },
@@ -87,16 +86,28 @@ export default {
     buscarUsuario(usuario) {
       return this.users.find((elemento) => elemento.name == usuario.userName);
     },
-  },
-  async agregarUsuario(userName, pass){
+    async agregarUsuario(nombre, contrasenia){
+      const user = {
+        name: nombre,
+        pass: `pass ${contrasenia}`
+      }
+          await axios.post(this.ruta, user).then((data) => {
+            console.log(data);
+          //objeto router -> tiene 1 pila de ruteo
+          //this.$router.push(`/agregarCompra/${id}`)
+
+          this.$router.push('/')
+
+        });
+    }
+  }/*,
+  async agregarUsuario(userName, pass, montoMaximo){
      const resultado = await fetch(
       `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users`
     );
-  },
+  },*/,
   computed: {
-    estado() {
-      return this.store.loginStatus;
-    },
+    
   },
 };
 </script>

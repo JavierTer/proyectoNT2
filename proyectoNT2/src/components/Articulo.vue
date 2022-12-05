@@ -93,7 +93,8 @@ export default {
     },
    async borrar(id){
       ///users/:id/compras/:id
-       
+        if(!confirm('¿Desea eliminar esta compra?'))return;
+
         await axios.delete(`https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras/${this.id}`).then((data) => {
 
           //objeto router -> tiene 1 pila de ruteo

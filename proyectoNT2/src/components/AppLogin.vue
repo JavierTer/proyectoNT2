@@ -31,6 +31,12 @@
 
         <button class="btn btn-primary" v-on:click="validar">Ingresar</button>
       </div>
+
+      <div style="margin:20px" >
+        <h6 >¿No tenes cuenta?</h6> 
+        <button class="btn btn-primary" v-on:click="irRegistro">Registrate</button>
+
+      </div>
     </div>
   </div>
 </template>
@@ -88,7 +94,7 @@ export default {
           this.store.idUser = usuarioBuscado.id;
           this.store.nameUser = usuarioBuscado.name;
           this.store.loginStatus = true;
-
+          //this.store.gastoMaximo = usuarioBuscado.gastoMaximo;
           console.log('el status es: ');
           console.log(this.store.loginStatus);
           this.$router.push('/product')
@@ -104,7 +110,11 @@ export default {
     buscarUsuario(usuario) {
       return this.users.find((elemento) => elemento.name == usuario.userName && elemento.pass == `pass ${usuario.pass}`);
     },
+     irRegistro(){
+    this.$router.push('AppRegister')
+    }
   },
+ 
   computed: {
     estado() {
       return this.store.loginStatus;
