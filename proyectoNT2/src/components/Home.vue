@@ -9,21 +9,15 @@
 
       <br />
       <ul class="list-group" style="cursor: pointer">
-        <li>
-          <router-link
-          class="list-group-item "
-          aria-current="true"
-          to="appRegister"
-          >Registrate</router-link
-        >
-        </li>
-        
         <li class="list-group-item">
           <router-link
           class="list-group-item "
           aria-current="true"
-          to="EstadisticaMensual"
-          >Establece un monto máximo mensual</router-link
+          
+          to="appRegister"
+          >
+          <i class="bi bi-person-plus"></i>          
+          Registrate</router-link
         >
         </li>
         <li class="list-group-item">
@@ -31,9 +25,22 @@
           class="list-group-item "
           aria-current="true"
           to="AppLogin"
-          >Inicia sesión</router-link
+          >
+          <i class="bi bi-person-fill check"></i>
+          Inicia sesión</router-link
         >
         </li>
+        <li class="list-group-item">
+          <router-link
+          class="list-group-item "
+          aria-current="true"
+          to="EstadisticaMensual"
+          >
+          <i class="bi bi-reception-4"></i>
+          Establece un monto máximo mensual</router-link
+        >
+        </li>
+        
        <!-- <li class="list-group-item">Registrá tus compras</li>-->
       </ul>
     </div>

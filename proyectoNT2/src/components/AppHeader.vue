@@ -21,10 +21,14 @@
               <router-link class="nav-link active" aria-current="page" to="/"> Home </router-link>
             </li>-->
             <li class="nav-item" v-if="verificarSaludo" style="margin-left:10px">
-               <router-link class="nav-link" to="product"> Mis compras  </router-link>
+               <router-link class="nav-link" to="product"> 
+                <i class="bi bi-cart4"></i>
+                Mis compras  </router-link>
             </li>
             <li class="nav-item" v-if="verificarSaludo">
-              <router-link to="agregarCompra" class="nav-link" >Agregar compra  </router-link>
+              <router-link to="agregarCompra" class="nav-link" > 
+              <i class="bi bi-plus-circle"></i>
+              Agregar compra  </router-link>
             </li>
             
            
@@ -35,10 +39,20 @@
         </div>
         <ul  class="navbar-nav" >
            <li class="nav-item" id="login">
-              <router-link :to=verificarEstado class="nav-link"> {{this.loginText}} </router-link>
+              <router-link :to=verificarEstado class="nav-link"> {{this.loginText}} 
+                          <i class="bi bi-person-fill check"></i>
+
+              </router-link>
             </li>
           <li v-if="verificarSaludo" class="nav-item" id="nameUser"> 
-              {{ this.store.nameUser }}  
+              <i class="bi bi-person-circle"> </i>
+              {{ this.store.nameUser }} 
+              <router-link 
+              i class="bi bi-gear-fill"
+              to="EstadisticaMensual"
+              style="padding-left:5px"
+              >
+              </router-link> 
           </li>
          <!-- <li v-if="verificarSaludo" class="nav-item" id="registerUser">
               Mis registros: {{this.store.contadorRegistros}} 

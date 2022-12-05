@@ -1,45 +1,9 @@
 <template>
     <div>
-          <h1>hola {{this.id}}</h1>
-     <div
-          class="row p-5 mb-3"
-          v-if="this.comprasPorMes[this.id].cantComprasMes > 0"
-        >
-          <h2>{{ this.store.meses[this.id] }}</h2>
-          <div class="col" id="titulo">
-            {{ this.comprasPorMes[0].cantComprasMes }} Compras
-            <!--{{this.comprasPorMes[0]}} -->
-            <ul>
-              <li
-                id="item"
-                v-for="compras in this.comprasPorMes[this.id].compras"
-                :key="compras.id"
-              >
-                {{ compras.mes }} | ${{ compras.total }}
-              </li>
-            </ul>
-          </div>
-          <div class="col" id="titulo">
-            Articulos {{ this.comprasPorMes[this.id].articulos.length }}
-            <ul>
-              <li
-                id="item"
-                v-for="articulos in this.comprasPorMes[this.id].articulos"
-                :key="articulos.nombre"
-              >
-                {{ articulos.nombre }} | {{ articulos.cantidad }} | ${{
-                  articulos.monto
-                }}
-              </li>
-            </ul>
-          </div>
-          <div class="row p-2 mb-2 bg-secundary">
-            <p>
-              Total gastado en el mes: ${{ this.comprasPorMes[0].totalPorMes }}
-            </p>
-            <p>Objetivo logrado:</p>
-          </div>
-        </div>
+          <h1>hola </h1>
+
+
+        
         <router-link to="/">Cerrar</router-link>
 
     </div>

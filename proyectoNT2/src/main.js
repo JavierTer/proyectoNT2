@@ -9,7 +9,7 @@ import AppLogout from './components/AppLogout.vue'
 import AppRegister from './components/AppRegister.vue'
 import AgregarCompra from './components/AgregarCompra.vue'
 import EditarCompra from './components/EditarCompra.vue'
-//import EstadisticaMensual from './components/EstadisticaMensual.vue'
+import EstadisticaMensual from './components/EstadisticaMensual.vue'
 
 
 
@@ -49,6 +49,8 @@ const routes = [
   {path: "/appLogout", component: AppLogout },
   {path: "/appRegister", component: AppRegister},
   {path: "/agregarCompra", component: AgregarCompra},
+  {path: "/EstadisticaMensual", component: EstadisticaMensual},
+
 
 
 
