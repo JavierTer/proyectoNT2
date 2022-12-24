@@ -94,9 +94,12 @@ export default {
           this.store.idUser = usuarioBuscado.id;
           this.store.nameUser = usuarioBuscado.name;
           this.store.loginStatus = true;
+          this.store.img = `${usuarioBuscado.avatar}`;
           //this.store.gastoMaximo = usuarioBuscado.gastoMaximo;
           console.log('el status es: ');
           console.log(this.store.loginStatus);
+          console.log('el avatar es');
+          console.log(usuarioBuscado.avatar);
           this.$router.push('/product')
 
         } else {

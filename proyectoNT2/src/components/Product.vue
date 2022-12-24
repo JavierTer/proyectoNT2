@@ -49,6 +49,9 @@
     
     </div>
     </div>
+    <div v-else>
+      <h2>No hay compras registradas</h2>
+    </div>
     
     
    

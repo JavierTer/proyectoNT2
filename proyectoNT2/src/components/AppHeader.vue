@@ -45,7 +45,8 @@
               </router-link>
             </li>
           <li v-if="verificarSaludo" class="nav-item" id="nameUser"> 
-              <i class="bi bi-person-circle"> </i>
+              <i class="bi bi-person-circle"> </i> 
+             <!-- <img src= "{{this.store.img}}" alt="">-->
               {{ this.store.nameUser }} 
               <router-link 
               i class="bi bi-gear-fill"

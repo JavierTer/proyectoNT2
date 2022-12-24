@@ -11,7 +11,8 @@ export const useAppStore = defineStore('appStore', {
             meses:              ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
             limiteDeCompras:    5000,
             first:               true,
-            gastoMaximo:         []
+            gastoMaximo:         [],
+            img:                 '',
             
         }
     },

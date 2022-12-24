@@ -30,15 +30,12 @@
           Inicia sesión</router-link
         >
         </li>
-        <li class="list-group-item">
-          <router-link
-          class="list-group-item "
+        <li class="list-group-item"
           aria-current="true"
-          to="EstadisticaMensual"
+          style="border:1px solid black margin:10px padding:10px"
           >
           <i class="bi bi-reception-4"></i>
-          Establece un monto máximo mensual</router-link
-        >
+          Establece un monto máximo mensual
         </li>
         
        <!-- <li class="list-group-item">Registrá tus compras</li>-->
@@ -239,6 +236,7 @@ export default {
 
       console.log(`${id}`);
     },*/,
+   
     clasificarArticulos() {
       for (let i = 0; i < this.comprasPorMes.length; i++) {
         const comprasPorMes = this.comprasPorMes[i];
