@@ -9,6 +9,19 @@
                 <h3 bg-secondary id="cantArticulos">{{this.compra.articulos.length}}</h3>
             </div>
       </div>
+
+      <div id="categoria" style="width:65%; margin:auto; padding:10px">
+      <h6>Selecciona una categoria para la compra</h6>
+      <select class="form-select" aria-label="Default select example" v-model="compra.categoria">
+        <option v-for="(categoria, index) in this.userCategorias" 
+        v-bind:key="index"
+        style="width:80%"
+        >{{categoria}}</option>
+    
+      </select>
+
+      </div>
+
       <div class="row" style="width:75%; margin:auto ">
         <span class="input-group-text">Fecha de la compra</span>
         <div style="margin: 10px" id="marco" class="form-floating">
@@ -126,6 +139,7 @@ export default {
         mes: new Date(),
         articulos: [],
         total: 0,
+        categoria: ''
       },
       //idDeLaCompra: 0,
       nombreArticulo: "",
@@ -133,9 +147,21 @@ export default {
       cantidadArticulo: 0,
       pathCompra: `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras`,
       // pathArticulo: `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras/1/articulos`
+      pathUser:  `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}`,
+      userCategorias: []
     };
   },
-  async created() {},
+  async created() {
+     if (this.store.loginStatus) {
+      const resultado = await fetch(
+      `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}`      );
+      const data = await resultado.json();
+
+      this.userCategorias = data.categorias;
+      //console.log(this.usuario);
+      
+    }
+  },
   methods: {
     validar() {
       return true;
@@ -212,9 +238,9 @@ export default {
 
       this.compra.articulos.push(articulos);
 
-      (this.nombreArticulo = ""),
-        (this.precioArticulo = 0),
-        (this.cantidadArticulo = 0);
+      this.nombreArticulo = "",
+      this.precioArticulo = 0,
+      this.cantidadArticulo = 0,
     },
     calcularSubTotal(precio, cantidad) {
       return precio * cantidad;
