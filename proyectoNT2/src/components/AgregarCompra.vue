@@ -240,7 +240,7 @@ export default {
 
       this.nombreArticulo = "",
       this.precioArticulo = 0,
-      this.cantidadArticulo = 0,
+      this.cantidadArticulo = 0
     },
     calcularSubTotal(precio, cantidad) {
       return precio * cantidad;
