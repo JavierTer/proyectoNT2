@@ -13,6 +13,7 @@ export const useAppStore = defineStore('appStore', {
             first:               true,
             gastoMaximo:         [],
             img:                 '',
+            articulos: []
             
         }
     },

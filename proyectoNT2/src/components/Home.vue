@@ -243,7 +243,6 @@ export default {
         let articulos = [];
         for (let x = 0; x < comprasPorMes.articulos.length; x++) {
           const articulosDeUnMes = comprasPorMes.articulos[x];
-
           for (let y = 0; y < articulosDeUnMes.length; y++) {
             const unArticulo = articulosDeUnMes[y];
 
@@ -261,6 +260,9 @@ export default {
               };
 
               articulos.push(miPrototipoDeObjeto);
+              
+            
+
             } else {
               let cantidadPars = parseInt(unArticulo.cantidad);
               articuloBuscado.cantidad =

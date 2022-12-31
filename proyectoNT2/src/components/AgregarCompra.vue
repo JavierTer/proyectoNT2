@@ -34,7 +34,46 @@
           />
           <label for="floatingInputGroup1"></label>
         </div>
+<br>    
+        <div class="row">
+          <div class="col" id="articulo_collapse">
+                        
 
+                  <select class="form-select" aria-label="Default select example" v-model="nombreArticulo">
+                                    <option selected>Articulo agregado previamente</option>
+
+        <option v-for="(articulo, index) in this.misArticulos" 
+        v-bind:key="index"
+        >{{articulo}}</option>
+    
+      </select>
+          </div>
+          <div class="col" id="articulo_form">
+                            <p>
+                   
+                  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Agregar nuevo articulo
+                  </button>
+                </p>
+                <div class="collapse" id="collapseExample">
+                  <div class="card card-body">
+                      <span class="input-group-text">Nombre del articulo</span>
+                              <div style="margin: 10px" class="form-floating">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="floatingInputGroup1"
+                                  placeholder=""
+                                  v-model="nombreArticulo"
+                                />
+
+                                <label for="floatingInputGroup1"></label>
+                              </div>                  
+                    </div>
+                </div>
+          </div>
+        </div>
+<!--
         <span class="input-group-text">Nombre del articulo</span>
         <div style="margin: 10px" class="form-floating">
           <input
@@ -47,7 +86,7 @@
 
           <label for="floatingInputGroup1"></label>
         </div>
-
+-->
         <span class="input-group-text">Precio del articulo</span>
         <div style="margin: 10px" class="form-floating">
           <input
@@ -148,7 +187,9 @@ export default {
       pathCompra: `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras`,
       // pathArticulo: `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras/1/articulos`
       pathUser:  `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}`,
-      userCategorias: []
+      userCategorias: [],
+      compras: [],
+      misArticulos: []
     };
   },
   async created() {
@@ -160,40 +201,54 @@ export default {
       this.userCategorias = data.categorias;
       //console.log(this.usuario);
       
+      //agrego aca
+      await this.verSiHayArticulos();
     }
   },
   methods: {
     validar() {
-      return true;
+      if(this.compra.categoria == ''){
+        alert('Debes elegir una categoria')
+      }
+     
+      else if(this.compra.articulos.length < 1){
+        alert("Debe agregar al menos 1 articulo");
+
+      }
+      else{
+        return true
+      }
+      
     },
     async verSiHayArticulos() {
       const compra = await fetch(
-        `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras/${this.idDeLaCompra}`
+        `https://636e57b5182793016f3e10ef.mockapi.io/api/v1/users/${this.store.idUser}/compras`
       );
-      const data = await resultado.json();
-    },
-    /*
-    async guardarCompra() {
-      this.compra.articulos.push({
-        //id: 1,
-        nombre: this.nombreArticulo,
-        precio: this.precioArticulo,
-        cantidad: this.cantidadArticulo,
-      }),
-        await axios.post(this.pathCompra, this.compra).then((data) => {
-          console.log(data);
-        });
+      const data = await compra.json();
+      this.compras = data;
 
-      //   await axios.post(this.pathArticulo,  this.compra.articulos).then(data => {console.log(data);})
-    }*/
+      for (let index = 0; index < this.compras.length; index++) {
+        const unaCompra = this.compras[index];
+       
+
+      for (let x = 0; x < unaCompra.articulos.length; x++) {
+        const unArticulo = unaCompra.articulos[x];
+         let artBuscado = this.misArticulos.find(elemento => elemento == unArticulo.nombre.toUpperCase())
+            if(artBuscado == null){
+              this.misArticulos.push(unArticulo.nombre.toUpperCase())
+            }
+      }
+
+        
+      }
+    },
+    
     async crearCompra() {
-      if (this.compra.articulos.length < 1) {
-        alert("Debe agregar al menos 1 articulo");
-      } else {
+      
+      if (this.validar()) {
         this.compra.total = this.calcularTotal(this.compra.articulos);
         console.log(this.compra.total);
         await axios.post(this.pathCompra, this.compra).then((data) => {
-          this.idDeLaCompra = data.data.id;
 
           //objeto router -> tiene 1 pila de ruteo
           //this.$router.push(`/agregarCompra/${id}`)
@@ -201,7 +256,9 @@ export default {
           this.$router.push('/')
 
         });
-      }
+      } 
+      
+ 
     },
     calcularTotal(articulos) {
       let total = 0
@@ -225,7 +282,11 @@ export default {
       console.log(`${id}`);
     },
     agregarArticulos() {
-      let articulos = {
+      if(this.nombreArticulo == '' || this.precioArticulo == 0 || this.cantidadArticulo == 0){
+        alert('Debes completar todos los campos')
+      }
+      else {
+  let articulos = {
         id: this.compra.articulos.length + 1,
         nombre: this.nombreArticulo,
         precio: this.precioArticulo,
@@ -235,8 +296,11 @@ export default {
           this.cantidadArticulo
         ),
       };
+           this.compra.articulos.push(articulos);
 
-      this.compra.articulos.push(articulos);
+     }
+    
+
 
       this.nombreArticulo = "",
       this.precioArticulo = 0,
@@ -259,6 +323,23 @@ export default {
 </script>
 
 <style>
+
+#articulo_collapse{
+padding-left:5px;
+padding-top:5px;
+padding-right: 0px;
+margin:10px;    
+border:3px solid black;
+}
+
+#articulo_form{
+padding-left:5px;
+padding-top:5px;
+padding-right: 0px;
+margin:10px;    
+border:3px solid black;
+}
+
 #title {
   padding-bottom: 20px;
 }

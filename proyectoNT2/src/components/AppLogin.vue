@@ -100,7 +100,7 @@ export default {
           console.log(this.store.loginStatus);
           console.log('el avatar es');
           console.log(usuarioBuscado.avatar);
-          this.$router.push('/product')
+          this.$router.push('/')
 
         } else {
           alert("El usuario no existe");
