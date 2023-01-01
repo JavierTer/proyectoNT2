@@ -24,7 +24,7 @@
             v-bind:key="index"
             style="width: 80%"
           >
-            {{ categoria }}
+            {{ categoria.toUpperCase() }}
           </option>
         </select>
       </div>
@@ -80,10 +80,9 @@
             <div class="dropdown mt-3">
               <select
                 class="btn btn-secondary dropdown-toggle"
-                data-bs-toggle="dropdown"
                 v-model="nombreArticulo"
               >
-                <option selected>-</option>
+                <option selected>-----</option>
 
                 <option
                   v-for="(articulo, index) in this.misArticulos"
@@ -216,7 +215,7 @@
                 v-for="(articulo, index) in compra.articulos"
                 v-bind:key="index"
               >
-                <td>{{ articulo.nombre }}</td>
+                <td>{{ articulo.nombre.toUpperCase() }}</td>
                 <td>{{ articulo.precio }}</td>
                 <td>{{ articulo.cantidad }}</td>
                 <td>{{ articulo.subTotal }}</td>
@@ -258,7 +257,6 @@ export default {
         total: 0,
         categoria: "",
       },
-      //idDeLaCompra: 0,
       nombreArticulo: "",
       precioArticulo: 0,
       cantidadArticulo: 0,
@@ -319,7 +317,6 @@ export default {
     async crearCompra() {
       if (this.validar()) {
         this.compra.total = this.calcularTotal(this.compra.articulos);
-        console.log(this.compra.total);
         await axios.post(this.pathCompra, this.compra).then((data) => {
           //objeto router -> tiene 1 pila de ruteo
           //this.$router.push(`/agregarCompra/${id}`)
