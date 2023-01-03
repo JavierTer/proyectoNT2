@@ -42,69 +42,32 @@
       </ul>
     </div>
 
-    <div v-else>
+    <div v-else id="fondo">
       
+       <h1 class="d-flex justify-content-center" style="padding-top:20px">
+        Hola {{ this.store.nameUser }} mira tus estadisticas por mes
+      </h1>
+
+      <div class="row" id="container">
+       <router-link
+       v-for="(mes, index) in this.comprasPorMes" v-bind:key="index"
+       type="button"
+       class="btn btn-dark"
+       id="botonMes"
+       :to= "{name: 'detalle', params: { comprasPorMes: mes } }"
+       > {{mes.nombre}} </router-link >
+      </div>
+      
+      <br>
+      <br>
+      <br>
+<!--
       <h1 class="d-flex justify-content-center">
         Hola {{ this.store.nameUser }} mira tus estadisticas
       </h1>
-            <div class="row"
-                  v-for="(compras, index) in this.comprasPorMes"
-                  :key="index"
-                  id="caja"
-                  > <h2 id="tit">{{meses[index]}}</h2>
-                    <div class="row" v-if="compras.cantComprasMes > 0">
-                       <div class="col">
-                          <h4>Compras : {{compras.cantComprasMes}}</h4>  
-                          <table class="table bordered striped">
-                                <thead>
-                                  <tr>
-                                    <th>Fecha</th>
-                                    <th>Total</th>
-                                  
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                      <tr v-for="(unaCompra, index) in compras.compras" v-bind:key="index"> 
-                                        <td>{{unaCompra.mes}}</td>
-                                        <td>${{unaCompra.total}}</td>
-                                        
-                                      </tr>
-                                </tbody>
-                            </table>
-                      </div>
-                    <div class="col">
-                       <h4>Articulos : {{ compras.articulos.length }} </h4> 
-                        <table class="table bordered striped">
-                                <thead>
-                                  <tr>
-                                    <th>Nombre</th>
-                                    <th>Cantidad Mensual</th>
-                                    <th>Gasto Mensual</th>
+-->
 
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                      <tr v-for="(unArticulo, index) in compras.articulos" v-bind:key="index"> 
-                                        <td>{{unArticulo.nombre.toUpperCase()}}</td>
-                                        <td>{{unArticulo.cantidad}}</td>
-                                        <td>${{unArticulo.monto}}</td>
-
-                                      </tr>
-                                </tbody>
-                            </table>
-                    </div>
-                    <div class="row">
-                      <h5 style="padding-top:20px">Total gastado en {{meses[index]}}: ${{compras.totalPorMes}} </h5>
-                      
-                    </div>
-                    </div>
-                    <div v-else>
-                      <h6>No se registraron compras en {{meses[index]}}</h6>
-                      <!--<p>Su objetivo para este mes fue: {{gastoMaximo}}</p>-->
-                      <p></p>
-                    </div>
-                   
-            </div>
+            
 
 
 
@@ -127,18 +90,18 @@ export default {
     return {
       compras: [],
       comprasPorMes: [
-        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
-        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
-        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
-        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
-        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
-        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
-        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
-        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
-        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
-        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
-        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
-        { totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { nombre: "Enero", totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { nombre: "Febrero",totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { nombre: "Marzo",totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { nombre: "Abril",totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { nombre: "Mayo",totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        {nombre: "Junio", totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { nombre: "Julio",totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { nombre: "Agosto",totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { nombre: "Septiembre",totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { nombre: "Octubre",totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { nombre: "Noviembre",totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
+        { nombre: "Diciembre",totalPorMes: 0, compras: [], articulos: [], cantComprasMes: 0 },
       ],
       //  fecha: this.registrarFecha(),
       meses: [
@@ -347,4 +310,17 @@ export default {
     border: 2px solid black;
 }
 
+#container {
+  border-radius: 10px;
+  justify-content: center;
+  padding-top: 50px;
+  margin:auto;
+  width: 90%;
+  
+}
+
+#fondo {
+  width: 100%;
+  height: 100%;
+}
 </style>

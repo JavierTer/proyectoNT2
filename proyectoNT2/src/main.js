@@ -51,6 +51,8 @@ const routes = [
   {path: "/appRegister", component: AppRegister},
   {path: "/agregarCompra", component: AgregarCompra},
   {path: "/EstadisticaMensual", component: EstadisticaMensual},
+  {path: "/DetalleMes/:comprasPorMes", component: DetalleMes, name:'detalle'},
+
 
 
 
